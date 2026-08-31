@@ -1,0 +1,38 @@
+================================================================
+DATA 266 HW1 — RUN_LOG (Rohil Utture, SID4=2708)
+================================================================
+Environment: Google Colab, Tesla T4 (sm_75), CUDA 13.0 driver 580.82.07.
+NN: Python 3, PyTorch + TensorFlow. CUDA: nvcc -O3 -std=c++14 -arch=sm_75.
+
+--- Task 2: neural_networks (executed run) --------------------
+[params] SID4=2708 SEED=2708 SLICE=708 HP_ID=2 CLS_A=8 CLS_B=9
+[data]   shape (759, 9) | class balance {1: 496, 0: 263}
+[split]  train (531, 8)  val (114, 8)  test (114, 8)   random_state=2708, stratified
+
+PyTorch     baseline  accs=[0.7281, 0.7368, 0.7368] mean=0.7339 std=0.0041
+PyTorch     modified  accs=[0.7544, 0.7456, 0.7632] mean=0.7544 std=0.0072
+TensorFlow  baseline  accs=[0.7632, 0.7368, 0.7544] mean=0.7515 std=0.0109
+TensorFlow  modified  accs=[0.7368, 0.7456, 0.7368] mean=0.7398 std=0.0041
+(TensorFlow emitted a benign tf.function retracing warning during predict; no effect on results.)
+
+loss curves (SEED run):
+PyTorch     baseline: final train=0.402 val=0.438 | min val=0.437 @ep15
+PyTorch     modified: final train=0.318 val=0.515 | min val=0.438 @ep6
+TensorFlow  baseline: final train=0.394 val=0.468 | min val=0.456 @ep16
+TensorFlow  modified: final train=0.299 val=0.561 | min val=0.452 @ep5
+checkpoint: saved baseline_seed2708.pt (baseline hidden[64,32] Adam lr0.001 30ep seed 2708)
+
+--- Task 3: CUDA matmul (executed run) -----------------------
+GPU: Tesla T4 | compute capability: (7, 5) | NVCC arch: sm_75
+$ nvcc -O3 -std=c++14 -arch=sm_75 matmul.cu -o matmul
+$ ./matmul
+Square matmul CPU vs CUDA (BLOCK=16x16 = 256 threads/block)
+N=256   | CPU      20.26 ms | kernel    0.103 ms | H2D+D2H    1.035 ms | e2e     1.137 ms | speedup(CPU/e2e)   17.82x | maxdiff 2.29e-05
+N=1024  | CPU    3376.59 ms | kernel    9.193 ms | H2D+D2H    5.249 ms | e2e    14.442 ms | speedup(CPU/e2e)  233.81x | maxdiff 9.16e-05
+N=4096  | CPU  631476.29 ms | kernel  323.966 ms | H2D+D2H   79.089 ms | e2e   403.055 ms | speedup(CPU/e2e) 1566.73x | maxdiff 4.27e-04
+
+$ nvprof ./matmul   (GPU activities — kernel vs transfer)
+ GPU activities:  90.06%  742.56ms   6  matmulKernel(float const*, float const*, float*, int)
+                   5.83%  48.059ms   3  [CUDA memcpy DtoH]
+                   4.11%  33.909ms   6  [CUDA memcpy HtoD]
+================================================================
