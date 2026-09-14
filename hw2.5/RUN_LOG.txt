@@ -1,0 +1,20 @@
+# ---- Environment / native-kernel provenance (verify.py, 2026-09-14) ----
+# torch: 2.11.0+cu128 | cuda: 12.8
+# device: NVIDIA GeForce RTX 5090 (12, 0)
+# sm_120 native: True
+# arch_list: ['sm_75', 'sm_80', 'sm_86', 'sm_90', 'sm_100', 'sm_120']
+# matmul OK: (4096, 4096)
+# -> Confirms benchmarks ran on native Blackwell (sm_120) kernels, not PTX fallback.
+# ------------------------------------------------------------------------
+2026-09-14T21:57:01+00:00	PartB	UUID=GPU-41051861-72ca-e198-fd60-2bf89fd2a67b	matmul precision sweep; iters=50 warmup=20; -> part_b_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.csv, part_b_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.png
+2026-09-14T22:01:34+00:00	PartC	UUID=GPU-41051861-72ca-e198-fd60-2bf89fd2a67b	roofline: add 268435456 elems, matmul N=8192; -> part_c_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.csv
+2026-09-14T22:05:21+00:00	PartD	UUID=GPU-41051861-72ca-e198-fd60-2bf89fd2a67b	attention B=1 H=8 D=64 fp16; naive OOM~None, fused OOM~None; -> part_d_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.csv, part_d_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.png
+2026-09-14T22:07:55+00:00	PartD	UUID=GPU-41051861-72ca-e198-fd60-2bf89fd2a67b	attention B=1 H=32 D=64 fp16; naive OOM~None, fused OOM~None; -> part_d_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.csv, part_d_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.png
+2026-09-14T22:16:38+00:00	PartD	UUID=GPU-41051861-72ca-e198-fd60-2bf89fd2a67b	attention B=1 H=32 D=64 fp16; naive OOM~16384, fused OOM~None; -> part_d_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.csv, part_d_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.png
+2026-09-14T22:19:15+00:00	PartE	UUID=GPU-41051861-72ca-e198-fd60-2bf89fd2a67b	sustained 1.0min N=8192; -> part_e_samples_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.csv, part_e_throughput_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.csv
+2026-09-14T22:41:14+00:00	PartE	UUID=GPU-41051861-72ca-e198-fd60-2bf89fd2a67b	sustained 20.0min N=8192; -> part_e_samples_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.csv, part_e_throughput_GPU-41051861-72ca-e198-fd60-2bf89fd2a67b.csv
+# NOTE (manual): the three PartD runs above are the debugging progression --
+#   H=8  21:05  fits through L=16384 (no OOM in the tested range),
+#   H=32 22:07  sysmem-fallback spill: 33 GB "fit" on a 32 GB card -> NOT a true OOM,
+#   H=32 22:16  sysmem fallback disabled: clean OOM at L=16384.  <-- authoritative Part D result.
+# PartE 20-min throttle onset was recomputed via analyze_e.py (t=60s, power-limited).
