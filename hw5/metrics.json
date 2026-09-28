@@ -1,0 +1,55 @@
+{
+  "SID4": 2708,
+  "SEED": 2708,
+  "SLICE": 708,
+  "model": "google/flan-t5-small",
+  "dataset": "neil-code/dialogsum-test",
+  "subset": {
+    "train": 200,
+    "eval": 50
+  },
+  "hyperparams": {
+    "epochs": 3,
+    "batch": 8,
+    "lr": 0.001,
+    "max_in": 512,
+    "max_out": 64
+  },
+  "baseline_rouge": {
+    "rouge1": 0.1744,
+    "rouge2": 0.058,
+    "rougeL": 0.1522,
+    "rougeLsum": 0.1542
+  },
+  "finetuned_r16_rouge": {
+    "rouge1": 0.3764,
+    "rouge2": 0.1347,
+    "rougeL": 0.3059,
+    "rougeLsum": 0.3063
+  },
+  "finetuned_r16_final_loss": 1.4295,
+  "rank_sweep": {
+    "4": {
+      "alpha": 8,
+      "trainable": 172032,
+      "final_loss": 1.5348,
+      "rouge": {
+        "rouge1": 0.3549,
+        "rouge2": 0.1357,
+        "rougeL": 0.3025,
+        "rougeLsum": 0.3038
+      }
+    },
+    "16": {
+      "alpha": 32,
+      "trainable": 688128,
+      "final_loss": 1.4295,
+      "rouge": {
+        "rouge1": 0.3764,
+        "rouge2": 0.1347,
+        "rougeL": 0.3059,
+        "rougeLsum": 0.3063
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+================================================================
+RUN_LOG — HW5 LoRA / DialogSum
+Student SID4=2708 (SEED=2708, SLICE=708)
+Machine: local, NVIDIA GeForce RTX 3060 Laptop GPU
+Python 3.13.5 · Torch 2.14.0+cu130 · device=cuda
+Run: full top-to-bottom (Run all), no manual intervention
+Generation: beam search (num_beams=4), no_repeat_ngram_size=3
+================================================================
+
+--- Section 0.1 Personal parameters ---
+SID4  = 2708
+SEED  = 2708
+SLICE = 708
+HP_ID = 2   (HW5: fixed r-sweep for all students -> HP_ID not applied)
+CLS_A = 8, CLS_B = 9   (classification params, unused in summarization)
+
+--- Section 0.2 Environment ---
+Python : 3.13.5 · Torch : 2.14.0+cu130 · device=cuda
+GPU    : NVIDIA GeForce RTX 3060 Laptop GPU
+
+--- Task 1 Data preparation ---
+DatasetDict: train=1999, validation=499, test=499
+Processed columns: ['input_text', 'target_text']
+(2 processed samples printed in notebook: doctor check-up dialogue; vaccination dialogue)
+
+--- Task 2 Baseline inference (flan-t5-small, no fine-tuning) ---
+Test dialogue 0
+  BASELINE : Ms. Dawson, Attached is a draft memo to all employees.
+Test dialogue 1
+  BASELINE : Ms. Dawson, Attached is a draft memo to all employees.
+Saved -> baseline_outputs.json
+
+--- Task 3 Apply LoRA (r=16, alpha=32, dropout=0.05, target_modules=[q,v]) ---
+Total parameters     : 77,649,280
+Trainable parameters : 688,128
+Trainable %          : 0.8862%
+
+--- Task 4 Fine-tuning (main model r=16) ---
+Train subset: 200 examples starting at index 708 | Eval subset: 50 examples
+epoch 0 mean loss 1.8635 | epoch 1 mean 1.5816 | epoch 2 mean 1.5041
+Final training loss (r=16): 1.4295  |  train time: 22.1s
+Saved adapters -> lora-flan-t5-dialogsum-r16
+
+--- Task 5 Post-fine-tuning inference (r=16) ---
+Test dialogue 0 & 1 (same conversation, different reference)
+  FINE-TUNED: Dawson asks #Person1# to take a dictation for her. She tells her that all office
+              communications are restricted to email correspondence and official memos. The use of
+              instant messaging programs by employees during working hours is strictly prohibited.
+Saved -> finetuned_outputs.json
+
+--- Task 6 Output comparison (ROUGE on 50-example eval subset) ---
+metric        baseline    fine-tuned     delta
+rouge1          0.1744        0.3764   +0.2020
+rouge2          0.0580        0.1347   +0.0767
+rougeL          0.1522        0.3059   +0.1537
+rougeLsum       0.1542        0.3063   +0.1521
+
+--- Task 7 Experiment: LoRA rank r=4 vs r=16 ---
+[exp r=4]  epoch 0 mean 2.0287 | epoch 1 mean 1.6772 | epoch 2 mean 1.5834 | final 1.5348 | rougeL 0.3025
+[exp r=16] epoch 0 mean 1.8635 | epoch 1 mean 1.5816 | epoch 2 mean 1.5041 | final 1.4295 | rougeL 0.3059
+
+rank r     trainable  final_loss    rouge1    rouge2    rougeL
+4            172,032      1.5348    0.3549    0.1357    0.3025
+16           688,128      1.4295    0.3764    0.1347    0.3059
+
+Demo summaries by rank (both dialogues):
+  r=4  : Dawson asks #Person2# to take a dictation for Ms. Dawson. She asks all staff to take an
+         intra-office memorandum to all employees by this afternoon. The use of Instant Messaging
+         programs by employees during working hours is strictly prohibited.
+  r=16 : Dawson asks #Person1# to take a dictation for her. She tells her that all office
+         communications are restricted to email correspondence and official memos. The use of
+         instant messaging programs by employees during working hours is strictly prohibited.
+Saved -> loss_curves.png
+
+--- Standing artifacts ---
+Saved -> METRICS.md, metrics.json
+Also written: baseline_outputs.json, finetuned_outputs.json,
+              lora-flan-t5-dialogsum-r16/, lora-flan-t5-dialogsum-r4/, loss_curves.png
+
+Note: adding no_repeat_ngram_size=3 removed the earlier degenerate repetition. The
+fine-tuned ROUGE-1 fell from 0.4053 (pre-fix) to 0.3764, confirming the earlier score was
+partly inflated by repeated n-grams overlapping the reference.
+================================================================
