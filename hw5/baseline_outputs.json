@@ -1,0 +1,14 @@
+{
+  "eval_idx": [
+    0,
+    1
+  ],
+  "baseline_outputs": [
+    "Ms. Dawson, Attached is a draft memo to all employees.",
+    "Ms. Dawson, Attached is a draft memo to all employees."
+  ],
+  "references": [
+    "Ms. Dawson helps #Person1# to write a memo to inform every employee that they have to change the communication method and should not use Instant Messaging anymore.",
+    "In order to prevent employees from wasting time on Instant Message programs, #Person1# decides to terminate the use of those programs and asks Ms. Dawson to send out a memo to all employees by the afternoon."
+  ]
+}
