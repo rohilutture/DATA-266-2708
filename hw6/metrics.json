@@ -1,0 +1,23 @@
+{
+  "SID4": 2708,
+  "SEED": 2708,
+  "backbone": "resnet18 (no pretrained weights)",
+  "img_size": 96,
+  "labeled_subset": 500,
+  "rot_unlabeled": 100000,
+  "simclr_unlabeled": 50000,
+  "simclr": {
+    "temperature": 0.2,
+    "proj_dim": 128
+  },
+  "test_accuracy": {
+    "A_supervised": 0.4,
+    "B_rotation": 0.3935,
+    "C_simclr": 0.5838
+  },
+  "query_indices": [
+    6399,
+    6237,
+    526
+  ]
+}

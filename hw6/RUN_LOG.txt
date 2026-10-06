@@ -1,0 +1,59 @@
+================================================================
+RUN_LOG — HW6 Self-Supervised / Contrastive Representation Learning (STL-10)
+Student SID4=2708 (SEED=2708)
+Backbone: resnet18 (no pretrained weights) | img_size=96
+Run: full top-to-bottom (Run all). NUM_WORKERS set to 0 for Parts B/C
+(custom Dataset classes don't pickle to spawn workers on Windows).
+================================================================
+
+--- Section 0.1 Personal parameters ---
+SID4 = 2708 | SEED = 2708 | SLICE = 708
+HP_ID = 2 (HW6: fixed settings for all students -> not applied)
+CLS_A = 8, CLS_B = 9 (unused in HW6)
+
+--- Config ---
+IMG_SIZE=96 | labeled subset=500 (10% of train) | test=8000
+rotation unlabeled = 100000 (all) | simclr unlabeled = 50000
+SimCLR: tau=0.2, proj_dim=128 | batches: sup 64 / rot 512 / simclr 512
+epochs: supervised 15 | rotation 15 | simclr 20 | linear probe 20 | optimizer Adam
+
+--- Part A: Supervised (10% labels, end-to-end) ---
+ResNet-18 trained from scratch on 500 labeled images.
+TEST ACCURACY = 0.4000
+
+--- Part B: Rotation SSL + linear probe ---
+Pretrained encoder on 100k unlabeled images (4-way rotation), then froze
+it and trained a linear classifier on the same 500-label subset.
+TEST ACCURACY = 0.3935
+
+--- Part C: SimCLR + linear probe ---
+Contrastive pretraining on 50k unlabeled images (2 views, NT-Xent, tau=0.2,
+MLP projection head), then froze encoder and linear-probed on the 500-label subset.
+TEST ACCURACY = 0.5838
+
+--- Summary (full 8000-image test set) ---
+model                               test acc
+A. Supervised (10% labels)            0.4000
+B. Rotation SSL + linear probe        0.3935
+C. SimCLR + linear probe              0.5838
+Ranking: SimCLR >> Supervised ~= Rotation
+
+--- Part D: Nearest-neighbour visualization ---
+Query indices (same across all three encoders): [526 (ship), 6237 (cat), 6399 (car)]
+Saved -> hw6_nn_query526.png, hw6_nn_query6237.png, hw6_nn_query6399.png
+Observed top-5 class matches (neighbours sharing the query class):
+  ship (#526):  SimCLR 5/5 | Rotation 3/5 | Supervised 2/5
+  cat  (#6237): SimCLR 4/5 | Rotation 2/5 | Supervised 1/5
+  car  (#6399): Rotation 5/5 | SimCLR 4/5 | Supervised 2/5
+SimCLR neighbours are the most class-coherent overall; rotation is strong on rigid
+man-made objects (cars) but weak on deformable animals; supervised matches low-level
+appearance more than object identity.
+
+--- Artifacts written ---
+hw6_supervised.pt, hw6_rotation_encoder.pt, hw6_simclr_encoder.pt,
+hw6_nn_query*.png, METRICS.md, metrics.json
+
+Note: NUM_WORKERS=6 hung on Part B (notebook-defined Dataset + Windows spawn workers
+can't be pickled); set NUM_WORKERS=0 and re-ran B/C successfully.
+(For full per-epoch loss/accuracy prints, see the executed notebook cell outputs.)
+================================================================
