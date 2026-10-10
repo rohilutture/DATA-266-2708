@@ -1,0 +1,46 @@
+================================================================
+RUN_LOG — HW7 GANs (concepts) & AutoEncoders on FashionMNIST
+Student SID4=2708 (SEED=2708)
+Torch 2.5.1+cu121 | device=cuda
+Run: full top-to-bottom (Run all), no manual intervention
+================================================================
+
+--- Section 0.1 Personal parameters ---
+SID4 = 2708 | SEED = 2708 | SLICE = 708
+HP_ID = 2 (HW7: fixed settings -> not applied) | CLS_A = 8, CLS_B = 9 (unused)
+
+--- Part 1 ---
+GAN concept answers (architecture; mode collapse + 2 mitigations; 3 variants:
+DCGAN, Conditional GAN, CycleGAN) are written in the notebook markdown cells.
+
+--- Part 2 config ---
+Dataset: FashionMNIST (60k train / 10k test) | latent_dim=32 | epochs=20, batch=128, lr=1e-3
+
+--- Part 2a: FC-AE training (BCE per image) ---
+epoch  0  274.014
+epoch  5  222.756
+epoch 10  217.087
+epoch 15  214.143
+epoch 19  212.649
+FC-AE trained in 77s
+
+--- Part 2b: VAE training (ELBO/img = BCE + KL) ---
+epoch  0  ELBO 288.514  (BCE 273.511 + KL 15.004)
+epoch  5  ELBO 245.383  (BCE 229.693 + KL 15.690)
+epoch 10  ELBO 242.413  (BCE 226.402 + KL 16.011)
+epoch 15  ELBO 241.064  (BCE 224.920 + KL 16.144)
+epoch 19  ELBO 240.409  (BCE 224.221 + KL 16.188)
+VAE trained in 82s
+
+--- Part 2c: Test-set reconstruction (per pixel, lower is better) ---
+model      test MSE/px   test BCE/px
+FC-AE          0.01005       0.27364
+VAE            0.01282       0.28183
+=> FC-AE reconstructs better (~22% lower MSE); VAE trades reconstruction for a
+   regularized, sampleable latent space.
+
+--- Figures / artifacts ---
+Saved -> hw7_reconstructions.png   (Original vs FC-AE vs VAE, 8 test images)
+Saved -> hw7_vae_samples.png       (64 samples from z ~ N(0, I))
+Saved -> hw7_fcae.pt, hw7_vae.pt, METRICS.md, metrics.json
+================================================================

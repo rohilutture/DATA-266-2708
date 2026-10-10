@@ -1,0 +1,19 @@
+{
+  "SID4": 2708,
+  "SEED": 2708,
+  "dataset": "FashionMNIST",
+  "latent_dim": 32,
+  "epochs": 20,
+  "batch": 128,
+  "lr": 0.001,
+  "test_reconstruction": {
+    "FC_AE": {
+      "mse_per_px": 0.01005,
+      "bce_per_px": 0.27364
+    },
+    "VAE": {
+      "mse_per_px": 0.01282,
+      "bce_per_px": 0.28183
+    }
+  }
+}
