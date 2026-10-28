@@ -1,0 +1,53 @@
+================================================================
+RUN_LOG — HW9 Latent Diffusion & Stable Diffusion (FashionMNIST)
+Student SID4=2708 (SEED=2708)
+Torch 2.11.0+cu128 | device=cuda (RTX 4090)
+Run: full top-to-bottom (Run all), no manual intervention
+================================================================
+
+--- Section 0.1 Personal parameters ---
+SID4 = 2708 | SEED = 2708 | SLICE = 708
+HP_ID = 2 (HW9: fixed settings -> not applied) | CLS_A = 8, CLS_B = 9 (unused)
+
+--- Config ---
+VAE: stabilityai/sd-vae-ft-mse (frozen) | latent scale s=0.18215
+img_size=128 -> latent 4x16x16 | T=1000, beta in [1e-4, 0.02] linear
+U-Net: base=64, mults=(1,2,4), self-attn @16x16 + bottleneck | params=5,583,300
+Training: 50 epochs, lr=2e-5, batch=128, p_uncond=0.1 | guidance w=3 | train size=60000
+
+--- Part 1: VAE reconstruction ---
+VAE reconstruction MSE (pixels in [-1,1]): 0.000775
+Saved -> hw9_vae_reconstruction.png   (near-lossless round-trip at 48x spatial compression)
+
+--- Part 2: Forward diffusion ---
+Decoded noisy latents at t in {0,200,500,800,1000}.
+t=0 clean -> t=200 degraded/recognizable -> t=500 structure mostly gone ->
+t=800/1000 high-frequency colorful noise.
+Saved -> hw9_forward_diffusion.png
+
+--- Part 3: U-Net ---
+Shape check passed: U-Net output == latent shape. Parameters: 5,583,300
+
+--- Part 4: Training (eps-prediction, latents pre-encoded in 115s) ---
+[ldm] epoch  0  eps-MSE 0.4085
+[ldm] epoch  5  eps-MSE 0.1280
+[ldm] epoch 10  eps-MSE 0.1159
+[ldm] epoch 15  eps-MSE 0.1113
+[ldm] epoch 20  eps-MSE 0.1076
+[ldm] epoch 25  eps-MSE 0.1039
+[ldm] epoch 30  eps-MSE 0.1027
+[ldm] epoch 35  eps-MSE 0.1015
+[ldm] epoch 40  eps-MSE 0.1002
+[ldm] epoch 45  eps-MSE 0.0982
+[ldm] epoch 49  eps-MSE 0.0973
+Final training eps-MSE: 0.0973  | trained in 694s (~11.6 min)
+Saved -> hw9_ldm_unet.pt, hw9_training_loss.png
+
+--- Part 5: Sampling (CFG w=3, 1000 DDPM steps, cond+uncond batched) ---
+Generated 64 conditional images (labels cycle classes 0-9). Sampled in 5s.
+Rigid items (trousers, bags, boots, sneakers, dresses) crisp; finer items
+(sandals/heels, shirt/coat/pullover tops) rougher. Saved -> hw9_samples_grid.png
+
+--- Standing artifacts ---
+Saved -> METRICS.md, metrics.json
+================================================================

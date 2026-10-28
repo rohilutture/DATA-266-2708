@@ -1,0 +1,13 @@
+{
+  "SID4": 2708,
+  "SEED": 2708,
+  "vae": "stabilityai/sd-vae-ft-mse (frozen)",
+  "latent_scale": 0.18215,
+  "img_size": 128,
+  "latent_shape": [4, 16, 16],
+  "diffusion": {"T": 1000, "beta_start": 0.0001, "beta_end": 0.02},
+  "unet": {"base_ch": 64, "ch_mults": [1, 2, 4], "params": 5583300, "attn_at": ["16x16", "bottleneck"]},
+  "training": {"epochs": 50, "lr": 2e-05, "batch": 128, "p_uncond": 0.1, "guidance_w": 3.0, "train_size": 60000},
+  "vae_reconstruction_mse": 0.000775,
+  "final_train_eps_mse": 0.097272
+}
