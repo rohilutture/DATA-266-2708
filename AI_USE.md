@@ -20,6 +20,8 @@
 ## What AI did NOT do
 - All numbers in METRICS.md come from runs on this machine's RTX 4090; none were produced or estimated by the AI.
 
+- Extra benchmark: ran the vLLM/HF serving benchmark a second time with TinyLlama/TinyLlama-1.1B-Chat-v1.0 (results saved separately; the Qwen results were backed up and restored).
+
 ## Verification
 - Ran `HW45_QUICK=1` dry run first (passed after fixes), then the full run; checked there were no tracebacks, no negative memory savings, and that the batch sweeps end in a real OOM.
 - Observed the invalid pre-cap sweep (bs=512 at 40 GiB) and reran from scratch after the cap; KV-cache measured sizes match the analytic formula.

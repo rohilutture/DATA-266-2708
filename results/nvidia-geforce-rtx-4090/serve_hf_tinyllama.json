@@ -1,0 +1,17 @@
+{
+  "hf_pipeline_bs1": {
+    "batch": 1,
+    "tokens_per_s": 76.52486003766721,
+    "p50_ms": 1673.2245460000001,
+    "p95_ms": 1733.921358099996,
+    "mean_ms": 1672.6590540250004,
+    "n_latency_samples": 40
+  },
+  "_meta": {
+    "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "engine": "hf",
+    "max_new_tokens": 128,
+    "dtype": "bfloat16",
+    "trials": 20
+  }
+}

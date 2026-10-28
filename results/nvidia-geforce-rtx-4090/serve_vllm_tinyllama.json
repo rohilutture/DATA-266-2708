@@ -1,0 +1,37 @@
+{
+  "vllm_bs1": {
+    "batch": 1,
+    "tokens_per_s": 331.80917209214977,
+    "p50_ms": 385.6294120000001,
+    "p95_ms": 391.85282054999107,
+    "mean_ms": 385.7638991499968,
+    "n_latency_samples": 20
+  },
+  "vllm_bs8": {
+    "batch": 8,
+    "tokens_per_s": 2237.7807170580613,
+    "p50_ms": 457.3319590000011,
+    "p95_ms": 460.8675708999968,
+    "mean_ms": 457.59622120000216,
+    "n_latency_samples": 20
+  },
+  "vllm_bs32": {
+    "batch": 32,
+    "tokens_per_s": 8915.22978463346,
+    "p50_ms": 459.65263500001186,
+    "p95_ms": 461.4947543499923,
+    "mean_ms": 459.43852250000106,
+    "n_latency_samples": 20
+  },
+  "own_prompt_demo": {
+    "prompt": "Explain in two sentences why batch size affects GPU throughput.",
+    "completion": ""
+  },
+  "_meta": {
+    "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "engine": "vllm",
+    "max_new_tokens": 128,
+    "dtype": "bfloat16",
+    "trials": 20
+  }
+}

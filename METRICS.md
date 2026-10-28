@@ -116,3 +116,20 @@ Figure: `figures/fig_kv_nvidia-geforce-rtx-4090.png`.
 **Single configuration I would use for a full fine-tune: bf16 mixed precision (`amp`) at the HW4 batch of 32** — it has the highest throughput (844 samples/s at batch 32, 1,166 at batch 256), the shortest fine-tune (18.7 s vs 34.3 s), and the same test accuracy as the baseline (0.649 each, within noise), while checkpointing and the 8-bit optimiser add cost without memory we need.
 
 _Only one card was measured (instructor: one GPU is enough). Part A's cross-card max-batch ratio vs VRAM ratio and Part D 'both cards' are therefore answered for this single card; see the discussion-board answer if one was given._
+
+### Table HW4.1b — a second model from the Hugging Face Hub
+
+Same script and settings (bf16, 128 new tokens, 20 vLLM trials, same RTX 4090), model `TinyLlama/TinyLlama-1.1B-Chat-v1.0` (about 2.2x the parameters of Qwen2.5-0.5B). Raw data: `results/nvidia-geforce-rtx-4090/serve_{hf,vllm}_tinyllama.json`.
+
+| Configuration | Tokens/sec | p50 latency (ms) | p95 latency (ms) |
+|---|---|---|---|
+| HF pipeline, batch 1 | 77 | 1673 | 1734 |
+| vLLM, batch 1 | 332 | 386 | 392 |
+| vLLM, batch 8 | 2238 | 457 | 461 |
+| vLLM, batch 32 | 8915 | 460 | 461 |
+
+The pattern matches the Qwen table: vLLM per-request latency stays well below the HF batch-1 baseline at every tested batch size while throughput keeps rising (27x from batch 1 to 32). The larger model is slower per token in vLLM (332 vs 495 tokens/s at batch 1), as expected from more weights to read per decoding step. The own-prompt demo (`own_prompt_demo` in `serve_vllm_tinyllama.json`) returned an empty completion for TinyLlama, probably because the chat model got the raw prompt without its chat template and emitted an end-of-sequence token immediately; the own-prompt result reported above is from Qwen.
+
+### HW4.a save / reload check
+
+`hw4a_train.py` saves the fine-tuned model to `results/<gpu>/hw4a_model`, reloads it with `from_pretrained`, and runs custom inference on three sentences; the outputs are stored under `custom_inference` in `results/<gpu>/hw4a_baseline.json` (the model folder itself is not committed because of its size).
