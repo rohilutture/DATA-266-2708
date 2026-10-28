@@ -3,7 +3,8 @@
 | field | value |
 |---|---|
 | GPU | RTX 4090 (24 GB), `nvidia-smi -L` GPU 0 |
-| Machine / host | ADS-R15-840-02 (Windows 11, runs in WSL2 Ubuntu) |
+| Machine / host | ISB 840, machine number 30 (hostname ADS-R15-840-02; Windows 11, runs in WSL2 Ubuntu) |
+| Reservation date | October 27, 2026 |
 | Reservation confirmation (screenshot / email / booking id) | NOT RECORDED: no booking id or confirmation was available in the session; add it here |
 | Slot start | not recorded |
 | Slot end | not recorded |
