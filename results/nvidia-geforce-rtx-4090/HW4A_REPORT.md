@@ -29,14 +29,14 @@ Confusion matrix (rows = true, cols = predicted; order: negative, neutral, posit
 Worst class (lowest F1): **negative**. Five misclassified examples:
 
 1. ""I may be Asian, but it doesn't mean I automatically like T-ara. I'm not even familiar with KPOP. #DirectionersFuneral"" — true: negative, predicted: neutral
-   DIAGNOSIS: <write one line here>
+   DIAGNOSIS: Sarcastic/indirect complaint with no explicit negative words, so the model read it as a neutral statement of fact.
 2. "when you hungry af but Dunkin is closed on Sunday's &amp; conn don't open until 10" — true: negative, predicted: neutral
-   DIAGNOSIS: <write one line here>
+   DIAGNOSIS: Frustration is implied by the situation (closed shop) rather than stated, and the model likely missed the implicit negativity.
 3. ""Well Jokes apart, today or tomorrow Yakub has to meet with with 72 Hoors. S"" — true: negative, predicted: neutral
-   DIAGNOSIS: <write one line here>
+   DIAGNOSIS: Truncated, news-style text with no clear sentiment cue; the label depends on context the model cannot see.
 4. "HOF president: Frank Gifford 'built the game': The passing of Frank Gifford cast a cloud over Sunday's proceed..." — true: negative, predicted: neutral
-   DIAGNOSIS: <write one line here>
+   DIAGNOSIS: Neutral-sounding news headline about a death; the negative label comes from the event, not from sentiment words, so the model went neutral.
 5. "@user 25 March 1972: An IRA volunteer was killed when two IRA units engaged each other in error on the Springfield Road in Belfast.??" — true: negative, predicted: neutral
-   DIAGNOSIS: <write one line here>
+   DIAGNOSIS: Factual historical report of a killing with no opinion words; the negative label reflects the event, which the model treats as neutral.
 
 HW4 baseline measurements (used for HW4.5 only): peak GPU memory 3.74 GiB allocated (4.01 GiB reserved), wall-clock 34.9s total / 32.1s training-only, 437 samples/s.

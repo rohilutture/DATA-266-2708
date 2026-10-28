@@ -58,7 +58,7 @@ Best-combination rule: among the single techniques and combinations ['amp+optim8
 | 3 | optim8 | 0.64 | -5.8% (slower) vs baseline @32 | 0.111 |
 | 4 | ckpt | 1.66 | -24.0% (slower) vs baseline @32 | 0.069 |
 
-Apply first: **TODO choose from ranking above (usually the top row).** Skip on a 32 GB card: **TODO choose from ranking above** (a technique that costs throughput but whose memory is not needed because the model already fits comfortably).
+Apply first: **mixed precision (bf16)** — it is the top row: it saves 0.70 GiB at batch 32 and is 86% faster (844 vs 454 samples/s) with no accuracy change, so it costs nothing. Skip on a 32 GB card: **gradient checkpointing** — it has the lowest score (0.069 GiB per % throughput lost, -24% throughput) and its 1.66 GiB saving is not needed because the BERT-base baseline already fits comfortably (3.74 GiB at batch 32, out of 24 GiB on this card; larger still on 32 GB).
 
 ### Part C
 
@@ -75,11 +75,11 @@ Model `Qwen/Qwen2.5-0.5B-Instruct`, bf16, 128 new tokens per request (EOS ignore
 | vLLM, batch 8 | 3446 | 294 | 331 |
 | vLLM, batch 32 | 12022 | 336 | 377 |
 
-Computed fact for the 3–4 sentence answer: per-request p50 latency first exceeds the HF batch-1 baseline (1850 ms) while total throughput is still improving at vLLM batch **none of the tested sizes**. **TODO write your 3–4 sentence answer (interactive apps care about latency; batch/offline jobs care about throughput).**
+Computed fact for the 3–4 sentence answer: per-request p50 latency first exceeds the HF batch-1 baseline (1850 ms) while total throughput is still improving at vLLM batch **none of the tested sizes**. In our measurements, vLLM's p50 latency never exceeds the HF batch-1 baseline at any tested batch size: it rises only from 254 ms (batch 1) to 336 ms (batch 32), while total throughput grows 24x (495 to 12,022 tokens/s) and is still improving at batch 32. An interactive app cares about per-request latency, so it should run small batches (batch 1 is the lowest latency at 254 ms, and even batch 32 is about 5x faster than HF's 1,850 ms), whereas an offline or batch job cares about total tokens per second and should use the largest batch the KV cache allows. Here batching is almost free in latency because decoding a 0.5B model is memory-bandwidth bound, so extra sequences share each weight read; the trade-off would only bite at larger batches than we tested.
 
 Own-prompt demo: "Explain in two sentences why batch size affects GPU throughput." → Increasing the batch size can improve GPU throughput by allowing the GPU to process more data simultaneously, which can lead to faster and more efficient data processing. Additionally, a larger batch size may also result in more efficient use of GPU resources, as the GPU can allocate and manage more
 
-HW4 vs HW4.5 comparison: HW4.a serving was regenerated on this card with this same script, so the two runs coincide. If you also have an earlier HW4.a table, compare it here and attribute any difference to hardware, precision (bf16 vs the earlier dtype) or a measurement flaw (e.g. missing warm-up, latency measured per batch vs per request). **TODO**
+HW4 vs HW4.5 comparison: HW4.a serving was regenerated on this card with this same script, so the two runs coincide. If you also have an earlier HW4.a table, compare it here and attribute any difference to hardware, precision (bf16 vs the earlier dtype) or a measurement flaw (e.g. missing warm-up, latency measured per batch vs per request). No earlier HW4.a serving table was available to compare against, so there is no difference to attribute; the HW4.a numbers are this run's (RTX 4090, bf16, vLLM with the FlashInfer sampler disabled because the machine has no nvcc). Note that vLLM latency here is per batch (offline batch returns together), so per-request latency equals batch wall time.
 
 #### KV cache vs context length (batch 8)
 
@@ -113,6 +113,6 @@ Figure: `figures/fig_kv_nvidia-geforce-rtx-4090.png`.
 - **Lowest wall-clock for the full fine-tune:** `amp` — 18.7 s (baseline 34.3 s).
 - (HW4.5 summary only — not an HW5 baseline.)
 
-**Single configuration I would use for a full fine-tune: TODO pick from the tables, with a one-sentence justification.**
+**Single configuration I would use for a full fine-tune: bf16 mixed precision (`amp`) at the HW4 batch of 32** — it has the highest throughput (844 samples/s at batch 32, 1,166 at batch 256), the shortest fine-tune (18.7 s vs 34.3 s), and the same test accuracy as the baseline (0.649 each, within noise), while checkpointing and the 8-bit optimiser add cost without memory we need.
 
 _Only one card was measured (instructor: one GPU is enough). Part A's cross-card max-batch ratio vs VRAM ratio and Part D 'both cards' are therefore answered for this single card; see the discussion-board answer if one was given._
