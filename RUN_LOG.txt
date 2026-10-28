@@ -1,0 +1,434 @@
+
+===== 2026-10-27T17:21:04-07:00 :: environment capture =====
+# captured 2026-10-27T17:21:04-07:00 on ADS-R15-840-02
+## nvidia-smi -L
+GPU 0: NVIDIA GeForce RTX 4090 (UUID: GPU-69ed69bb-36c8-d0d2-f22f-a068e8023854)
+
+## nvidia-smi (full)
+Tue Oct 27 17:21:04 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.47.03              KMD Version: 610.60        CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4090        On  |   00000000:01:00.0  On |                  Off |
+|  0%   32C    P5             31W /  450W |     694MiB /  24564MiB |      1%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A              33      G   /Xwayland                             N/A      |
++-----------------------------------------------------------------------------------------+
+
+## python / torch / cuda
+3.12.15 torch 2.14.1+cu130 cuda 13.0 cudnn 92400
+
+## pip freeze (key packages)
+bitsandbytes==0.50.2
+datasets==5.1.0
+numpy==2.5.4
+scikit-learn==1.9.1
+torch==2.14.1
+transformers==5.21.0
+wrote uuid_capture_nvidia-geforce-rtx-4090.txt  (also take a screenshot of 'nvidia-smi -L' if the instructor wants one)
+
+===== 2026-10-27T17:21:08-07:00 :: /home/denishat/hw45/train/bin/python hw4a_train.py =====
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+GPU: NVIDIA GeForce RTX 4090 (24.0 GiB)  dataset: cardiffnlp/tweet_eval/sentiment[train]  rows 0..4999 (inclusive, 0-indexed)
+split sizes: {'train': 3500, 'val': 750, 'test': 750}
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  21%|██        | 42/199 [00:00<00:00, 397.12it/s]Loading weights:  49%|████▊     | 97/199 [00:00<00:00, 467.99it/s]Loading weights:  75%|███████▍  | 149/199 [00:00<00:00, 478.65it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 582.46it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-uncased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+classifier.bias                            | MISSING    | 
+classifier.weight                          | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+  epoch 1/4 train_loss=0.9116 val_loss=0.8248 val_acc=0.6147 (8.5s)
+  epoch 2/4 train_loss=0.6091 val_loss=0.7339 val_acc=0.6813 (7.8s)
+  epoch 3/4 train_loss=0.3721 val_loss=0.8790 val_acc=0.6653 (7.9s)
+  epoch 4/4 train_loss=0.1948 val_loss=1.0583 val_acc=0.6520 (7.9s)
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.45s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.45s/it]
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  62%|██████▏   | 124/201 [00:00<00:00, 1236.93it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 1795.06it/s]
+# HW4.a — BERT sentiment fine-tune (auto-generated numbers; fill the DIAGNOSIS lines yourself)
+
+GPU: NVIDIA GeForce RTX 4090; dataset: cardiffnlp/tweet_eval/sentiment[train]; rows 0..4999 (inclusive, 0-indexed); seed 42; split {'train': 3500, 'val': 750, 'test': 750}
+
+| epoch | train loss | val loss | val acc | epoch s |
+|---|---|---|---|---|
+| 1 | 0.9116 | 0.8248 | 0.6147 | 8.5 |
+| 2 | 0.6091 | 0.7339 | 0.6813 | 7.8 |
+| 3 | 0.3721 | 0.8790 | 0.6653 | 7.9 |
+| 4 | 0.1948 | 1.0583 | 0.6520 | 7.9 |
+
+Validation accuracy stopped improving after epoch **2** (best val acc 0.6813). Training 2 more epoch(s) cost 15.8s of GPU time and changed val acc by -0.0293.
+
+Test acc (best-val-epoch weights) 0.6773; (final-epoch weights) 0.6573.
+
+Confusion matrix (rows = true, cols = predicted; order: negative, neutral, positive):
+```
+[55, 41, 9]
+[25, 254, 57]
+[8, 102, 199]
+```
+
+| class | precision | recall | F1 | support |
+|---|---|---|---|---|
+| negative | 0.625 | 0.524 | 0.570 | 105 |
+| neutral | 0.640 | 0.756 | 0.693 | 336 |
+| positive | 0.751 | 0.644 | 0.693 | 309 |
+
+Worst class (lowest F1): **negative**. Five misclassified examples:
+
+1. ""I may be Asian, but it doesn't mean I automatically like T-ara. I'm not even familiar with KPOP. #DirectionersFuneral"" — true: negative, predicted: neutral
+   DIAGNOSIS: <write one line here>
+2. "when you hungry af but Dunkin is closed on Sunday's &amp; conn don't open until 10" — true: negative, predicted: neutral
+   DIAGNOSIS: <write one line here>
+3. ""Well Jokes apart, today or tomorrow Yakub has to meet with with 72 Hoors. S"" — true: negative, predicted: neutral
+   DIAGNOSIS: <write one line here>
+4. "HOF president: Frank Gifford 'built the game': The passing of Frank Gifford cast a cloud over Sunday's proceed..." — true: negative, predicted: neutral
+   DIAGNOSIS: <write one line here>
+5. "@user 25 March 1972: An IRA volunteer was killed when two IRA units engaged each other in error on the Springfield Road in Belfast.??" — true: negative, predicted: neutral
+   DIAGNOSIS: <write one line here>
+
+HW4 baseline measurements (used for HW4.5 only): peak GPU memory 3.74 GiB allocated (4.01 GiB reserved), wall-clock 34.9s total / 32.1s training-only, 437 samples/s.
+
+===== 2026-10-27T17:21:58-07:00 :: /home/denishat/hw45/train/bin/python partAB.py all =====
+[baseline] bs=1      37 samp/s  peak 2.07 GiB  est epoch 94.1s
+[baseline] bs=2      81 samp/s  peak 2.07 GiB  est epoch 43.1s
+[baseline] bs=4      146 samp/s  peak 2.07 GiB  est epoch 23.9s
+[baseline] bs=8      245 samp/s  peak 2.10 GiB  est epoch 14.3s
+[baseline] bs=16     344 samp/s  peak 2.48 GiB  est epoch 10.2s
+[baseline] bs=32     454 samp/s  peak 3.74 GiB  est epoch 7.7s
+[baseline] bs=64     496 samp/s  peak 6.14 GiB  est epoch 7.1s
+[baseline] bs=128    522 samp/s  peak 11.03 GiB  est epoch 6.7s
+[baseline] bs=256    546 samp/s  peak 20.69 GiB  est epoch 6.4s
+[baseline] bs=512    OOM
+[amp] bs=1      33 samp/s  peak 2.07 GiB  est epoch 106.1s
+[amp] bs=2      62 samp/s  peak 2.07 GiB  est epoch 56.1s
+[amp] bs=4      133 samp/s  peak 2.07 GiB  est epoch 26.3s
+[amp] bs=8      258 samp/s  peak 2.10 GiB  est epoch 13.6s
+[amp] bs=16     508 samp/s  peak 2.26 GiB  est epoch 6.9s
+[amp] bs=32     844 samp/s  peak 3.04 GiB  est epoch 4.1s
+[amp] bs=64     1078 samp/s  peak 4.57 GiB  est epoch 3.2s
+[amp] bs=128    1125 samp/s  peak 7.67 GiB  est epoch 3.1s
+[amp] bs=256    1166 samp/s  peak 13.91 GiB  est epoch 3.0s
+[amp] bs=512    OOM
+[ckpt] bs=1      26 samp/s  peak 2.07 GiB  est epoch 134.8s
+[ckpt] bs=2      55 samp/s  peak 2.07 GiB  est epoch 64.2s
+[ckpt] bs=4      109 samp/s  peak 2.07 GiB  est epoch 32.2s
+[ckpt] bs=8      197 samp/s  peak 2.09 GiB  est epoch 17.8s
+[ckpt] bs=16     279 samp/s  peak 2.07 GiB  est epoch 12.6s
+[ckpt] bs=32     345 samp/s  peak 2.09 GiB  est epoch 10.1s
+[ckpt] bs=64     373 samp/s  peak 2.09 GiB  est epoch 9.4s
+[ckpt] bs=128    388 samp/s  peak 2.85 GiB  est epoch 9.0s
+[ckpt] bs=256    399 samp/s  peak 4.42 GiB  est epoch 8.8s
+[ckpt] bs=512    401 samp/s  peak 7.59 GiB  est epoch 8.7s
+[ckpt] bs=1024   402 samp/s  peak 13.91 GiB  est epoch 8.7s
+[ckpt] bs=2048   OOM
+[optim8] bs=1      34 samp/s  peak 1.05 GiB  est epoch 102.0s
+[optim8] bs=2      78 samp/s  peak 1.05 GiB  est epoch 44.8s
+[optim8] bs=4      135 samp/s  peak 1.06 GiB  est epoch 25.9s
+[optim8] bs=8      229 samp/s  peak 1.27 GiB  est epoch 15.3s
+[optim8] bs=16     330 samp/s  peak 1.88 GiB  est epoch 10.6s
+[optim8] bs=32     428 samp/s  peak 3.10 GiB  est epoch 8.2s
+[optim8] bs=64     474 samp/s  peak 5.53 GiB  est epoch 7.4s
+[optim8] bs=128    509 samp/s  peak 10.42 GiB  est epoch 6.9s
+[optim8] bs=256    534 samp/s  peak 20.08 GiB  est epoch 6.6s
+[optim8] bs=512    OOM
+[amp+optim8] bs=1      31 samp/s  peak 1.05 GiB  est epoch 113.6s
+[amp+optim8] bs=2      58 samp/s  peak 1.05 GiB  est epoch 60.6s
+[amp+optim8] bs=4      128 samp/s  peak 1.05 GiB  est epoch 27.4s
+[amp+optim8] bs=8      247 samp/s  peak 1.24 GiB  est epoch 14.1s
+[amp+optim8] bs=16     477 samp/s  peak 1.64 GiB  est epoch 7.3s
+[amp+optim8] bs=32     781 samp/s  peak 2.43 GiB  est epoch 4.5s
+[amp+optim8] bs=64     1029 samp/s  peak 3.95 GiB  est epoch 3.4s
+[amp+optim8] bs=128    1097 samp/s  peak 7.06 GiB  est epoch 3.2s
+[amp+optim8] bs=256    1154 samp/s  peak 13.29 GiB  est epoch 3.0s
+[amp+optim8] bs=512    OOM
+[amp+ckpt] bs=1      20 samp/s  peak 2.07 GiB  est epoch 171.3s
+[amp+ckpt] bs=2      42 samp/s  peak 2.07 GiB  est epoch 82.4s
+[amp+ckpt] bs=4      83 samp/s  peak 2.07 GiB  est epoch 42.3s
+[amp+ckpt] bs=8      174 samp/s  peak 2.08 GiB  est epoch 20.2s
+[amp+ckpt] bs=16     317 samp/s  peak 2.10 GiB  est epoch 11.0s
+[amp+ckpt] bs=32     620 samp/s  peak 2.08 GiB  est epoch 5.6s
+[amp+ckpt] bs=64     838 samp/s  peak 2.08 GiB  est epoch 4.2s
+[amp+ckpt] bs=128    864 samp/s  peak 2.56 GiB  est epoch 4.1s
+[amp+ckpt] bs=256    893 samp/s  peak 3.84 GiB  est epoch 3.9s
+[amp+ckpt] bs=512    910 samp/s  peak 6.41 GiB  est epoch 3.8s
+[amp+ckpt] bs=1024   920 samp/s  peak 11.54 GiB  est epoch 3.8s
+[amp+ckpt] bs=2048   OOM
+[amp+ckpt+optim8] bs=1      16 samp/s  peak 1.05 GiB  est epoch 214.7s
+[amp+ckpt+optim8] bs=2      34 samp/s  peak 1.05 GiB  est epoch 101.9s
+[amp+ckpt+optim8] bs=4      84 samp/s  peak 1.05 GiB  est epoch 41.8s
+[amp+ckpt+optim8] bs=8      165 samp/s  peak 1.06 GiB  est epoch 21.2s
+[amp+ckpt+optim8] bs=16     307 samp/s  peak 1.09 GiB  est epoch 11.4s
+[amp+ckpt+optim8] bs=32     505 samp/s  peak 1.19 GiB  est epoch 6.9s
+[amp+ckpt+optim8] bs=64     822 samp/s  peak 1.34 GiB  est epoch 4.3s
+[amp+ckpt+optim8] bs=128    844 samp/s  peak 1.94 GiB  est epoch 4.1s
+[amp+ckpt+optim8] bs=256    878 samp/s  peak 3.23 GiB  est epoch 4.0s
+[amp+ckpt+optim8] bs=512    904 samp/s  peak 5.80 GiB  est epoch 3.9s
+[amp+ckpt+optim8] bs=1024   919 samp/s  peak 10.94 GiB  est epoch 3.8s
+[amp+ckpt+optim8] bs=2048   OOM
+[baseline] full run bs=32: test acc 0.6493  peak 3.74 GiB  436 samp/s
+[amp] full run bs=32: test acc 0.6493  peak 3.05 GiB  788 samp/s
+[ckpt] full run bs=32: test acc 0.6520  peak 2.09 GiB  332 samp/s
+[optim8] full run bs=32: test acc 0.6560  peak 3.10 GiB  414 samp/s
+[amp+optim8] full run bs=32: test acc 0.6507  peak 2.43 GiB  739 samp/s
+[amp+ckpt] full run bs=32: test acc 0.6453  peak 2.08 GiB  570 samp/s
+[amp+ckpt+optim8] full run bs=32: test acc 0.6627  peak 1.19 GiB  547 samp/s
+[accum] effective 128: 4.89s for 12 steps; direct bs128: 2.98s
+
+===== 2026-10-27T17:41:29-07:00 :: /home/denishat/hw45/vllm/bin/python serve_bench.py --engine hf =====
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   9%|▉         | 27/290 [00:00<00:00, 268.71it/s]Loading weights:  21%|██▏       | 62/290 [00:00<00:00, 314.07it/s]Loading weights:  38%|███▊      | 110/290 [00:00<00:00, 377.59it/s]Loading weights:  51%|█████     | 148/290 [00:00<00:00, 375.61it/s]Loading weights:  67%|██████▋   | 194/290 [00:00<00:00, 400.81it/s]Loading weights:  82%|████████▏ | 237/290 [00:00<00:00, 410.34it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 418.44it/s]
+[transformers] Passing `generation_config` together with generation-related arguments=({'do_sample', 'min_new_tokens', 'max_new_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer Qwen2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `min_new_tokens` (=128) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+{
+  "hf_pipeline_bs1": {
+    "batch": 1,
+    "tokens_per_s": 68.57260084667301,
+    "p50_ms": 1850.3862615000344,
+    "p95_ms": 1980.753871649972,
+    "mean_ms": 1866.634755275004,
+    "n_latency_samples": 40
+  },
+  "_meta": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "engine": "hf",
+    "max_new_tokens": 128,
+    "dtype": "bfloat16",
+    "trials": 20
+  }
+}
+
+===== 2026-10-27T17:42:57-07:00 :: /home/denishat/hw45/vllm/bin/python serve_bench.py --engine vllm =====
+(MainProcess pid=11860) INFO 10-27 17:43:04 [api_utils.py:286] non-default args: {'dtype': 'bfloat16', 'max_model_len': 2048, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'model': 'Qwen/Qwen2.5-0.5B-Instruct'}
+(MainProcess pid=11860) INFO 10-27 17:43:04 [model.py:733] Resolved architecture: Qwen2ForCausalLM
+(MainProcess pid=11860) INFO 10-27 17:43:04 [model.py:2152] Using max model len 2048
+(MainProcess pid=11860) INFO 10-27 17:43:04 [scheduler.py:307] Chunked prefill is enabled with max_num_batched_tokens=8192.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+(MainProcess pid=11860) INFO 10-27 17:43:05 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=11860) WARNING 10-27 17:43:05 [flashinfer.py:99] FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 1608.93it/s]
+(MainProcess pid=11860) WARNING 10-27 17:43:07 [system_utils.py:153] We must use the `spawn` multiprocessing start method. Overriding VLLM_WORKER_MULTIPROC_METHOD to 'spawn'. See https://docs.vllm.ai/en/latest/usage/troubleshooting.html#python-multiprocessing for more information. Reasons: CUDA is initialized; WSL is detected and NVML is not compatible with fork
+(EngineCore pid=11944) INFO 10-27 17:43:12 [core.py:133] Initializing a V1 LLM engine (v0.32.0) with config: model='Qwen/Qwen2.5-0.5B-Instruct', speculative_config=None, tokenizer='Qwen/Qwen2.5-0.5B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=main, tokenizer_revision=main, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=Qwen/Qwen2.5-0.5B-Instruct, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::qwen4_exp_ple_short_conv', 'vllm::qwen4_exp_qsa_with_output', 'vllm::qwen4_exp_qsa_prepare_with_output', 'vllm::linear_attention', 'vllm::qwen_gdn_attention_core', 'vllm::qwen_gdn_attention_core_fused_norm_packed', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=True, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+(EngineCore pid=11944) WARNING 10-27 17:43:12 [flashinfer.py:99] FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+(EngineCore pid=11944) INFO 10-27 17:43:13 [parallel_state.py:1906] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_51e312699e3c444fa24803bec1a15b41 backend=nccl
+(EngineCore pid=11944) INFO 10-27 17:43:13 [parallel_state.py:2350] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore pid=11944) INFO 10-27 17:43:13 [gpu_worker.py:518] Using V2 Model Runner
+(EngineCore pid=11944) WARNING 10-27 17:43:13 [buffer_utils.py:47] Pinned memory is not available on this platform; falling back to device memory for UVA buffers.
+(EngineCore pid=11944) INFO 10-27 17:43:14 [model_runner.py:392] Loading model from scratch...
+(EngineCore pid=11944) INFO 10-27 17:43:15 [cuda.py:506] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(EngineCore pid=11944) INFO 10-27 17:43:15 [flash_attn.py:1117] Using FlashAttention version 2
+(EngineCore pid=11944) INFO 10-27 17:43:15 [base_loader.py:82] Initializing model took 1.715045 seconds
+(EngineCore pid=11944) INFO 10-27 17:43:16 [weight_utils.py:1108] Filesystem type for checkpoints: EXT4. Checkpoint size: 0.92 GiB. Available RAM: 59.52 GiB.
+(EngineCore pid=11944) INFO 10-27 17:43:16 [weight_utils.py:1131] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  5.85it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  5.84it/s]
+
+(EngineCore pid=11944) INFO 10-27 17:43:16 [default_loader.py:501] Loading weights took 0.20 seconds
+(EngineCore pid=11944) INFO 10-27 17:43:17 [model_runner.py:424] Model loading took 0.93 GiB memory and 3.863627 seconds
+(EngineCore pid=11944) INFO 10-27 17:43:17 [topk_topp_sampler.py:96] FlashInfer top-p/top-k sampling disabled via VLLM_USE_FLASHINFER_SAMPLER=0.
+(EngineCore pid=11944) INFO 10-27 17:43:17 [torch_utils.py:295] Reducing Torch threads from 16 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=11944) INFO 10-27 17:43:17 [utils.py:347] Using LBNHC KV cache layout.
+(EngineCore pid=11944) INFO 10-27 17:43:19 [caching.py:342] reconstructed serializable fn from standalone compile artifacts. num_artifacts=3 num_submods=25
+(EngineCore pid=11944) INFO 10-27 17:43:19 [decorators.py:319] [backbone] Directly load AOT compilation from path /home/denishat/.cache/vllm/torch_compile_cache/torch_aot_compile/45721faf502a3b3d1bbd115e1006fc82208071d0a412fbf0a43516a8809eeb5a/rank_0_0/model
+(EngineCore pid=11944) INFO 10-27 17:43:19 [monitor.py:62] [backbone] torch.compile took 0.22 s in total
+(EngineCore pid=11944) INFO 10-27 17:43:19 [monitor.py:91] [backbone] Initial profiling/warmup run took 0.22 s
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   4%|▍         | 2/51 [00:00<00:03, 15.56it/s]Capturing CUDA graphs (PIECEWISE):  10%|▉         | 5/51 [00:00<00:02, 18.33it/s]Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 8/51 [00:00<00:01, 22.31it/s]Capturing CUDA graphs (PIECEWISE):  24%|██▎       | 12/51 [00:00<00:01, 26.70it/s]Capturing CUDA graphs (PIECEWISE):  31%|███▏      | 16/51 [00:00<00:01, 30.66it/s]Capturing CUDA graphs (PIECEWISE):  39%|███▉      | 20/51 [00:00<00:00, 31.36it/s]Capturing CUDA graphs (PIECEWISE):  49%|████▉     | 25/51 [00:00<00:00, 34.97it/s]Capturing CUDA graphs (PIECEWISE):  59%|█████▉    | 30/51 [00:00<00:00, 37.11it/s]Capturing CUDA graphs (PIECEWISE):  67%|██████▋   | 34/51 [00:01<00:00, 37.67it/s]Capturing CUDA graphs (PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 38.58it/s]Capturing CUDA graphs (PIECEWISE):  86%|████████▋ | 44/51 [00:01<00:00, 40.11it/s]Capturing CUDA graphs (PIECEWISE):  96%|█████████▌| 49/51 [00:01<00:00, 39.60it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 34.17it/s]
+Capturing CUDA graphs (FULL):   0%|          | 0/2 [00:00<?, ?it/s]Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00, 51.33it/s]
+(EngineCore pid=11944) INFO 10-27 17:43:22 [model_runner.py:1127] Graph capturing finished in 2 secs, took 0.26 GiB
+(EngineCore pid=11944) INFO 10-27 17:43:23 [gpu_worker.py:759] Available KV cache memory: 18.6 GiB
+(EngineCore pid=11944) INFO 10-27 17:43:23 [gpu_worker.py:774] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.8500 is equivalent to --gpu-memory-utilization=0.8379 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.8621. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=11944) INFO 10-27 17:43:23 [kv_cache_utils.py:2327] GPU KV cache size: 1,624,992 tokens, Maximum concurrency for 2,048 tokens per request: 793.45x
+(EngineCore pid=11944) INFO 10-27 17:43:23 [kernel_warmup.py:176] JIT kernel warmup starting.
+(EngineCore pid=11944) INFO 10-27 17:43:23 [kernel_warmup.py:189] JIT kernel warmup finished in 0.00s.
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   8%|▊         | 4/51 [00:00<00:01, 39.75it/s]Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 9/51 [00:00<00:01, 41.91it/s]Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 14/51 [00:00<00:00, 43.85it/s]Capturing CUDA graphs (PIECEWISE):  37%|███▋      | 19/51 [00:00<00:00, 43.42it/s]Capturing CUDA graphs (PIECEWISE):  47%|████▋     | 24/51 [00:00<00:00, 41.88it/s]Capturing CUDA graphs (PIECEWISE):  57%|█████▋    | 29/51 [00:00<00:00, 41.36it/s]Capturing CUDA graphs (PIECEWISE):  67%|██████▋   | 34/51 [00:00<00:00, 43.31it/s]Capturing CUDA graphs (PIECEWISE):  76%|███████▋  | 39/51 [00:00<00:00, 41.60it/s]Capturing CUDA graphs (PIECEWISE):  86%|████████▋ | 44/51 [00:01<00:00, 41.92it/s]Capturing CUDA graphs (PIECEWISE):  96%|█████████▌| 49/51 [00:01<00:00, 40.90it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 42.11it/s]
+Capturing CUDA graphs (FULL):   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  17%|█▋        | 6/35 [00:00<00:00, 53.28it/s]Capturing CUDA graphs (FULL):  34%|███▍      | 12/35 [00:00<00:00, 51.98it/s]Capturing CUDA graphs (FULL):  51%|█████▏    | 18/35 [00:00<00:00, 50.22it/s]Capturing CUDA graphs (FULL):  69%|██████▊   | 24/35 [00:00<00:00, 46.13it/s]Capturing CUDA graphs (FULL):  83%|████████▎ | 29/35 [00:00<00:00, 45.28it/s]Capturing CUDA graphs (FULL): 100%|██████████| 35/35 [00:00<00:00, 49.48it/s]Capturing CUDA graphs (FULL): 100%|██████████| 35/35 [00:00<00:00, 48.86it/s]
+(EngineCore pid=11944) INFO 10-27 17:43:26 [model_runner.py:1127] Graph capturing finished in 3 secs, took 0.20 GiB
+(EngineCore pid=11944) INFO 10-27 17:43:26 [gpu_worker.py:971] CUDA graph pool memory: 0.2 GiB (actual), 0.29 GiB (estimated), difference: 0.09 GiB (46.9%).
+(EngineCore pid=11944) INFO 10-27 17:43:26 [gpu_worker.py:1034] Free memory on device (22.45/23.99 GiB) on startup. Desired GPU memory utilization is (0.85, 20.39 GiB). Actual usage is 1.24 GiB for consumed memory (weights + non-torch), 0.55 GiB for peak activation, and 0.2 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=19597947802` (18.25 GiB) to fit into requested memory, or `--kv-cache-memory=21809420800` (20.31 GiB) to fully utilize gpu memory. Current kv cache memory in use is 18.6 GiB.
+(EngineCore pid=11944) INFO 10-27 17:43:27 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=11944) INFO 10-27 17:43:27 [core.py:395] init engine (profile, create kv cache, warmup model) took 9.90 s (compilation: 0.22 s)
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 1780.60it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+(EngineCore pid=11944) INFO 10-27 17:43:28 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=11860) INFO 10-27 17:43:28 [hf.py:648] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+(MainProcess pid=11860) INFO 10-27 17:43:47 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore
+(EngineCore pid=11944) INFO 10-27 17:43:47 [core.py:1454] [shutdown] EngineCore: trigger received signal=SIGTERM
+(EngineCore pid=11944) INFO 10-27 17:43:47 [core.py:1635] [shutdown] EngineCore: start mode=abort timeout=0s
+(EngineCore pid=11944) INFO 10-27 17:43:47 [core.py:1666] [shutdown] EngineCore: request processing complete; starting resource teardown
+(EngineCore pid=11944) INFO 10-27 17:43:47 [core.py:1499] [shutdown] EngineCore: exiting busy loop
+{
+  "vllm_bs1": {
+    "batch": 1,
+    "tokens_per_s": 495.19326737381994,
+    "p50_ms": 254.21371950005778,
+    "p95_ms": 280.54762599996366,
+    "mean_ms": 258.484935950014,
+    "n_latency_samples": 20
+  },
+  "vllm_bs8": {
+    "batch": 8,
+    "tokens_per_s": 3445.8445649544396,
+    "p50_ms": 294.2757005000658,
+    "p95_ms": 331.03286630008597,
+    "mean_ms": 297.1695271500266,
+    "n_latency_samples": 20
+  },
+  "vllm_bs32": {
+    "batch": 32,
+    "tokens_per_s": 12021.709362763913,
+    "p50_ms": 335.5534519998855,
+    "p95_ms": 377.11664320000864,
+    "mean_ms": 340.7169376999718,
+    "n_latency_samples": 20
+  },
+  "own_prompt_demo": {
+    "prompt": "Explain in two sentences why batch size affects GPU throughput.",
+    "completion": " Increasing the batch size can improve GPU throughput by allowing the GPU to process more data simultaneously, which can lead to faster and more efficient data processing. Additionally, a larger batch size may also result in more efficient use of GPU resources, as the GPU can allocate and manage more data at once. Therefore, choosing a batch size that balances the trade-off between data processing speed and GPU resource utilization is crucial for achieving optimal GPU performance. \n\nBatch size affects GPU throughput by allowing the GPU to"
+  },
+  "_meta": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "engine": "vllm",
+    "max_new_tokens": 128,
+    "dtype": "bfloat16",
+    "trials": 20
+  }
+}
+
+===== 2026-10-27T17:43:52-07:00 :: /home/denishat/hw45/vllm/bin/python kv_cache.py =====
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  64%|██████▍   | 187/290 [00:00<00:00, 1868.13it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1950.76it/s]
+{'ctx': 128, 'batch': 8, 'analytic_kv_gb': 0.01171875, 'measured_kv_gb': 0.01171875, 'peak_total_gb': 0.9832344055175781}
+{'ctx': 256, 'batch': 8, 'analytic_kv_gb': 0.0234375, 'measured_kv_gb': 0.0234375, 'peak_total_gb': 1.0316133499145508}
+{'ctx': 512, 'batch': 8, 'analytic_kv_gb': 0.046875, 'measured_kv_gb': 0.046875, 'peak_total_gb': 1.121535301208496}
+{'ctx': 1024, 'batch': 8, 'analytic_kv_gb': 0.09375, 'measured_kv_gb': 0.09375, 'peak_total_gb': 1.3072385787963867}
+{'ctx': 2048, 'batch': 8, 'analytic_kv_gb': 0.1875, 'measured_kv_gb': 0.1875, 'peak_total_gb': 1.678645133972168}
+{'ctx': 4096, 'batch': 8, 'analytic_kv_gb': 0.375, 'measured_kv_gb': 0.375, 'peak_total_gb': 2.4214582443237305}
+{'ctx': 8192, 'batch': 8, 'analytic_kv_gb': 0.75, 'measured_kv_gb': 0.75, 'peak_total_gb': 3.9070844650268555}
+{'ctx': 16384, 'batch': 8, 'analytic_kv_gb': 1.5, 'measured_kv_gb': 1.5, 'peak_total_gb': 6.8783369064331055}
+{'ctx': 32768, 'batch': 8, 'analytic_kv_gb': 3.0, 'measured_kv_gb': 3.0, 'peak_total_gb': 12.820841789245605}
+{
+  "capacity": {
+    "kv_capacity_tokens": 1761712,
+    "num_gpu_blocks": 110107,
+    "block_size": 16,
+    "longest_ctx_bs8": 32768,
+    "model_max_pos": 32768
+  },
+  "validation": {
+    "validated_ctx": 32768,
+    "ok": true
+  }
+}
+
+===== 2026-10-27T17:45:36-07:00 :: /home/denishat/hw45/train/bin/python make_figs.py =====
+figures -> /mnt/c/Users/denishat/Downloads/hw4-5/figures
+
+===== 2026-10-27T17:45:37-07:00 :: /home/denishat/hw45/train/bin/python make_metrics.py =====
+wrote METRICS.md and GPU_HOURS.md
+
+===== 2026-10-27T17:45:38-07:00 :: done =====

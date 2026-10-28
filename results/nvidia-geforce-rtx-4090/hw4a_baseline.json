@@ -1,0 +1,138 @@
+{
+  "tech": {
+    "amp": null,
+    "ckpt": false,
+    "accum": 1,
+    "optim": "adamw"
+  },
+  "bs": 32,
+  "epochs": 4,
+  "logs": [
+    {
+      "epoch": 1,
+      "train_loss": 0.9116287667410714,
+      "val_loss": 0.8247856939633688,
+      "val_acc": 0.6146666407585144,
+      "epoch_s": 8.468565250000001
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6090560128348215,
+      "val_loss": 0.7338609445889791,
+      "val_acc": 0.6813333034515381,
+      "epoch_s": 7.804176466000001
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.37209068080357144,
+      "val_loss": 0.8790238194465637,
+      "val_acc": 0.6653333306312561,
+      "epoch_s": 7.890006301999996
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.1948268345424107,
+      "val_loss": 1.0583466908137003,
+      "val_acc": 0.6520000100135803,
+      "epoch_s": 7.893583722999999
+    }
+  ],
+  "wall_s": 34.901445691999996,
+  "train_s": 32.056331740999994,
+  "throughput": 436.7311928611602,
+  "peak_mem_gb": 3.7447457313537598,
+  "peak_reserved_gb": 4.009765625,
+  "n_train": 3500,
+  "avg_epoch_s": 8.014082935249998,
+  "test_loss": 1.0542186762491863,
+  "test_acc": 0.6573333144187927,
+  "final_val_acc": 0.6520000100135803,
+  "best_epoch": 2,
+  "best_val_acc": 0.6813333034515381,
+  "test_acc_best": 0.6773333549499512,
+  "extra_epochs_after_best": 2,
+  "extra_train_s_after_best": 15.783590024999995,
+  "val_acc_change_after_best": -0.029333293437957764,
+  "confusion_matrix": [
+    [
+      55,
+      41,
+      9
+    ],
+    [
+      25,
+      254,
+      57
+    ],
+    [
+      8,
+      102,
+      199
+    ]
+  ],
+  "per_class": [
+    {
+      "label": "negative",
+      "precision": 0.625,
+      "recall": 0.5238095238095238,
+      "f1": 0.5699481865284974,
+      "support": 105
+    },
+    {
+      "label": "neutral",
+      "precision": 0.6397984886649875,
+      "recall": 0.7559523809523809,
+      "f1": 0.6930422919508867,
+      "support": 336
+    },
+    {
+      "label": "positive",
+      "precision": 0.7509433962264151,
+      "recall": 0.6440129449838188,
+      "f1": 0.6933797909407665,
+      "support": 309
+    }
+  ],
+  "worst_class": "negative",
+  "worst_class_misclassified": [
+    {
+      "text": "\"I may be Asian, but it doesn't mean I automatically like T-ara. I'm not even familiar with KPOP. #DirectionersFuneral\"",
+      "true": "negative",
+      "pred": "neutral"
+    },
+    {
+      "text": "when you hungry af but Dunkin is closed on Sunday's &amp; conn don't open until 10",
+      "true": "negative",
+      "pred": "neutral"
+    },
+    {
+      "text": "\"Well Jokes apart, today or tomorrow Yakub has to meet with with 72 Hoors. S\"",
+      "true": "negative",
+      "pred": "neutral"
+    },
+    {
+      "text": "HOF president: Frank Gifford 'built the game': The passing of Frank Gifford cast a cloud over Sunday's proceed...",
+      "true": "negative",
+      "pred": "neutral"
+    },
+    {
+      "text": "@user 25 March 1972: An IRA volunteer was killed when two IRA units engaged each other in error on the Springfield Road in Belfast.??",
+      "true": "negative",
+      "pred": "neutral"
+    }
+  ],
+  "custom_inference": [
+    {
+      "text": "I absolutely love this phone, best purchase all year!",
+      "pred": "positive"
+    },
+    {
+      "text": "Traffic again. Great. Just what I needed.",
+      "pred": "positive"
+    },
+    {
+      "text": "The meeting is at 3pm in room 204.",
+      "pred": "neutral"
+    }
+  ]
+}
