@@ -1,0 +1,51 @@
+{
+  "SID4": 2708,
+  "SEED": 2708,
+  "dataset": "ccdv/arxiv-summarization [document], first 100 train docs",
+  "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+  "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "vector_db": "ChromaDB",
+  "K": 5,
+  "n_candidates": 30,
+  "chunks": {
+    "S1_fixed": 4094,
+    "S2_sentence": 3570
+  },
+  "eval_queries": 12,
+  "reranking": {
+    "no_rerank": {
+      "P@K": 0.9500000000000001,
+      "R@K": 0.3014694811391035,
+      "MRR": 1.0
+    },
+    "with_rerank": {
+      "P@K": 0.9333333333333335,
+      "R@K": 0.2962611478057702,
+      "MRR": 0.9583333333333334
+    }
+  },
+  "chunking": {
+    "S1_fixed": {
+      "P@K": 0.9500000000000001,
+      "R@K": 0.3014694811391035,
+      "MRR": 1.0
+    },
+    "S2_sentence": {
+      "P@K": 0.8666666666666667,
+      "R@K": 0.29987936446269775,
+      "MRR": 1.0
+    }
+  },
+  "memory": {
+    "without": {
+      "P@K": 0.0,
+      "R@K": 0.0,
+      "MRR": 0.0
+    },
+    "with": {
+      "P@K": 1.0,
+      "R@K": 0.25,
+      "MRR": 1.0
+    }
+  }
+}
