@@ -1,0 +1,177 @@
+[
+  {
+    "pair_id": 1,
+    "prompt_id": 16,
+    "seed": 1,
+    "prompt": "a cartoon character holding a sword in the left hand and a scroll in the right hand",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 2,
+    "prompt_id": 1,
+    "seed": 1,
+    "prompt": "a woman in a green and white outfit",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 3,
+    "prompt_id": 17,
+    "seed": 0,
+    "prompt": "three ninjas sitting around a campfire at night",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 4,
+    "prompt_id": 8,
+    "seed": 1,
+    "prompt": "the head of a man with a goat on it's back",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 5,
+    "prompt_id": 15,
+    "seed": 0,
+    "prompt": "two cartoon characters, one in red armor and one in blue armor, standing back to back",
+    "final_side": "L"
+  },
+  {
+    "pair_id": 6,
+    "prompt_id": 16,
+    "seed": 0,
+    "prompt": "a cartoon character holding a sword in the left hand and a scroll in the right hand",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 7,
+    "prompt_id": 15,
+    "seed": 1,
+    "prompt": "two cartoon characters, one in red armor and one in blue armor, standing back to back",
+    "final_side": "L"
+  },
+  {
+    "pair_id": 8,
+    "prompt_id": 13,
+    "seed": 1,
+    "prompt": "a bowl of ramen on a wooden table, product photo",
+    "final_side": "L"
+  },
+  {
+    "pair_id": 9,
+    "prompt_id": 0,
+    "seed": 1,
+    "prompt": "a man with a sword in his hand",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 10,
+    "prompt_id": 2,
+    "seed": 1,
+    "prompt": "a person with white hair and blue eyes",
+    "final_side": "L"
+  },
+  {
+    "pair_id": 11,
+    "prompt_id": 6,
+    "seed": 1,
+    "prompt": "a man and a horse in front of a large ball",
+    "final_side": "L"
+  },
+  {
+    "pair_id": 12,
+    "prompt_id": 2,
+    "seed": 0,
+    "prompt": "a person with white hair and blue eyes",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 13,
+    "prompt_id": 9,
+    "seed": 0,
+    "prompt": "a woman with glasses and a red shirt",
+    "final_side": "L"
+  },
+  {
+    "pair_id": 14,
+    "prompt_id": 8,
+    "seed": 0,
+    "prompt": "the head of a man with a goat on it's back",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 15,
+    "prompt_id": 7,
+    "seed": 1,
+    "prompt": "a woman in a kimono kimono",
+    "final_side": "L"
+  },
+  {
+    "pair_id": 16,
+    "prompt_id": 13,
+    "seed": 0,
+    "prompt": "a bowl of ramen on a wooden table, product photo",
+    "final_side": "L"
+  },
+  {
+    "pair_id": 17,
+    "prompt_id": 3,
+    "seed": 0,
+    "prompt": "a woman with long black hair wearing a blue robe",
+    "final_side": "L"
+  },
+  {
+    "pair_id": 18,
+    "prompt_id": 17,
+    "seed": 1,
+    "prompt": "three ninjas sitting around a campfire at night",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 19,
+    "prompt_id": 6,
+    "seed": 0,
+    "prompt": "a man and a horse in front of a large ball",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 20,
+    "prompt_id": 18,
+    "seed": 1,
+    "prompt": "a cartoon character with green hair and yellow eyes wearing a purple cloak",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 21,
+    "prompt_id": 18,
+    "seed": 0,
+    "prompt": "a cartoon character with green hair and yellow eyes wearing a purple cloak",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 22,
+    "prompt_id": 0,
+    "seed": 0,
+    "prompt": "a man with a sword in his hand",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 23,
+    "prompt_id": 1,
+    "seed": 0,
+    "prompt": "a woman in a green and white outfit",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 24,
+    "prompt_id": 5,
+    "seed": 0,
+    "prompt": "a man with black hair and a brown vest",
+    "final_side": "R"
+  },
+  {
+    "pair_id": 25,
+    "prompt_id": 12,
+    "seed": 0,
+    "prompt": "a city skyline at night with neon signs, wet street reflections",
+    "final_side": "R"
+  }
+]

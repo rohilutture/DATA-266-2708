@@ -1,0 +1,120 @@
+{"model":"base","prompt_id":0,"category":"in_domain","prompt":"a man with a sword in his hand","seed":0,"file":"images\/base\/p00_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":0,"category":"in_domain","prompt":"a man with a sword in his hand","seed":1,"file":"images\/base\/p00_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":1,"category":"in_domain","prompt":"a woman in a green and white outfit","seed":0,"file":"images\/base\/p01_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":1,"category":"in_domain","prompt":"a woman in a green and white outfit","seed":1,"file":"images\/base\/p01_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":2,"category":"in_domain","prompt":"a person with white hair and blue eyes","seed":0,"file":"images\/base\/p02_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":2,"category":"in_domain","prompt":"a person with white hair and blue eyes","seed":1,"file":"images\/base\/p02_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":3,"category":"in_domain","prompt":"a woman with long black hair wearing a blue robe","seed":0,"file":"images\/base\/p03_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":3,"category":"in_domain","prompt":"a woman with long black hair wearing a blue robe","seed":1,"file":"images\/base\/p03_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":4,"category":"in_domain","prompt":"a man with a hat and glasses on","seed":0,"file":"images\/base\/p04_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":4,"category":"in_domain","prompt":"a man with a hat and glasses on","seed":1,"file":"images\/base\/p04_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":5,"category":"in_domain","prompt":"a man with black hair and a brown vest","seed":0,"file":"images\/base\/p05_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":5,"category":"in_domain","prompt":"a man with black hair and a brown vest","seed":1,"file":"images\/base\/p05_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":6,"category":"in_domain","prompt":"a man and a horse in front of a large ball","seed":0,"file":"images\/base\/p06_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":6,"category":"in_domain","prompt":"a man and a horse in front of a large ball","seed":1,"file":"images\/base\/p06_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":7,"category":"in_domain","prompt":"a woman in a kimono kimono","seed":0,"file":"images\/base\/p07_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":7,"category":"in_domain","prompt":"a woman in a kimono kimono","seed":1,"file":"images\/base\/p07_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":8,"category":"in_domain","prompt":"the head of a man with a goat on it's back","seed":0,"file":"images\/base\/p08_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":8,"category":"in_domain","prompt":"the head of a man with a goat on it's back","seed":1,"file":"images\/base\/p08_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":9,"category":"in_domain","prompt":"a woman with glasses and a red shirt","seed":0,"file":"images\/base\/p09_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":9,"category":"in_domain","prompt":"a woman with glasses and a red shirt","seed":1,"file":"images\/base\/p09_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":10,"category":"out_of_domain","prompt":"a photograph of a golden retriever running on a sandy beach","seed":0,"file":"images\/base\/p10_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":10,"category":"out_of_domain","prompt":"a photograph of a golden retriever running on a sandy beach","seed":1,"file":"images\/base\/p10_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":11,"category":"out_of_domain","prompt":"a realistic portrait of an elderly woman reading in a library","seed":0,"file":"images\/base\/p11_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":11,"category":"out_of_domain","prompt":"a realistic portrait of an elderly woman reading in a library","seed":1,"file":"images\/base\/p11_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":12,"category":"out_of_domain","prompt":"a city skyline at night with neon signs, wet street reflections","seed":0,"file":"images\/base\/p12_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":12,"category":"out_of_domain","prompt":"a city skyline at night with neon signs, wet street reflections","seed":1,"file":"images\/base\/p12_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":13,"category":"out_of_domain","prompt":"a bowl of ramen on a wooden table, product photo","seed":0,"file":"images\/base\/p13_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":13,"category":"out_of_domain","prompt":"a bowl of ramen on a wooden table, product photo","seed":1,"file":"images\/base\/p13_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":14,"category":"out_of_domain","prompt":"a red sports car driving on a mountain road","seed":0,"file":"images\/base\/p14_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":14,"category":"out_of_domain","prompt":"a red sports car driving on a mountain road","seed":1,"file":"images\/base\/p14_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":15,"category":"compositional","prompt":"two cartoon characters, one in red armor and one in blue armor, standing back to back","seed":0,"file":"images\/base\/p15_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":15,"category":"compositional","prompt":"two cartoon characters, one in red armor and one in blue armor, standing back to back","seed":1,"file":"images\/base\/p15_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":16,"category":"compositional","prompt":"a cartoon character holding a sword in the left hand and a scroll in the right hand","seed":0,"file":"images\/base\/p16_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":16,"category":"compositional","prompt":"a cartoon character holding a sword in the left hand and a scroll in the right hand","seed":1,"file":"images\/base\/p16_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":17,"category":"compositional","prompt":"three ninjas sitting around a campfire at night","seed":0,"file":"images\/base\/p17_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":17,"category":"compositional","prompt":"three ninjas sitting around a campfire at night","seed":1,"file":"images\/base\/p17_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":18,"category":"compositional","prompt":"a cartoon character with green hair and yellow eyes wearing a purple cloak","seed":0,"file":"images\/base\/p18_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":18,"category":"compositional","prompt":"a cartoon character with green hair and yellow eyes wearing a purple cloak","seed":1,"file":"images\/base\/p18_s1.png","nsfw_flag":false}
+{"model":"base","prompt_id":19,"category":"compositional","prompt":"a tiny cartoon character standing in front of a giant dragon","seed":0,"file":"images\/base\/p19_s0.png","nsfw_flag":false}
+{"model":"base","prompt_id":19,"category":"compositional","prompt":"a tiny cartoon character standing in front of a giant dragon","seed":1,"file":"images\/base\/p19_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":0,"category":"in_domain","prompt":"a man with a sword in his hand","seed":0,"file":"images\/run1_lora_r4\/p00_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":0,"category":"in_domain","prompt":"a man with a sword in his hand","seed":1,"file":"images\/run1_lora_r4\/p00_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":1,"category":"in_domain","prompt":"a woman in a green and white outfit","seed":0,"file":"images\/run1_lora_r4\/p01_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":1,"category":"in_domain","prompt":"a woman in a green and white outfit","seed":1,"file":"images\/run1_lora_r4\/p01_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":2,"category":"in_domain","prompt":"a person with white hair and blue eyes","seed":0,"file":"images\/run1_lora_r4\/p02_s0.png","nsfw_flag":true}
+{"model":"run1_lora_r4","prompt_id":2,"category":"in_domain","prompt":"a person with white hair and blue eyes","seed":1,"file":"images\/run1_lora_r4\/p02_s1.png","nsfw_flag":true}
+{"model":"run1_lora_r4","prompt_id":3,"category":"in_domain","prompt":"a woman with long black hair wearing a blue robe","seed":0,"file":"images\/run1_lora_r4\/p03_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":3,"category":"in_domain","prompt":"a woman with long black hair wearing a blue robe","seed":1,"file":"images\/run1_lora_r4\/p03_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":4,"category":"in_domain","prompt":"a man with a hat and glasses on","seed":0,"file":"images\/run1_lora_r4\/p04_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":4,"category":"in_domain","prompt":"a man with a hat and glasses on","seed":1,"file":"images\/run1_lora_r4\/p04_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":5,"category":"in_domain","prompt":"a man with black hair and a brown vest","seed":0,"file":"images\/run1_lora_r4\/p05_s0.png","nsfw_flag":true}
+{"model":"run1_lora_r4","prompt_id":5,"category":"in_domain","prompt":"a man with black hair and a brown vest","seed":1,"file":"images\/run1_lora_r4\/p05_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":6,"category":"in_domain","prompt":"a man and a horse in front of a large ball","seed":0,"file":"images\/run1_lora_r4\/p06_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":6,"category":"in_domain","prompt":"a man and a horse in front of a large ball","seed":1,"file":"images\/run1_lora_r4\/p06_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":7,"category":"in_domain","prompt":"a woman in a kimono kimono","seed":0,"file":"images\/run1_lora_r4\/p07_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":7,"category":"in_domain","prompt":"a woman in a kimono kimono","seed":1,"file":"images\/run1_lora_r4\/p07_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":8,"category":"in_domain","prompt":"the head of a man with a goat on it's back","seed":0,"file":"images\/run1_lora_r4\/p08_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":8,"category":"in_domain","prompt":"the head of a man with a goat on it's back","seed":1,"file":"images\/run1_lora_r4\/p08_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":9,"category":"in_domain","prompt":"a woman with glasses and a red shirt","seed":0,"file":"images\/run1_lora_r4\/p09_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":9,"category":"in_domain","prompt":"a woman with glasses and a red shirt","seed":1,"file":"images\/run1_lora_r4\/p09_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":10,"category":"out_of_domain","prompt":"a photograph of a golden retriever running on a sandy beach","seed":0,"file":"images\/run1_lora_r4\/p10_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":10,"category":"out_of_domain","prompt":"a photograph of a golden retriever running on a sandy beach","seed":1,"file":"images\/run1_lora_r4\/p10_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":11,"category":"out_of_domain","prompt":"a realistic portrait of an elderly woman reading in a library","seed":0,"file":"images\/run1_lora_r4\/p11_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":11,"category":"out_of_domain","prompt":"a realistic portrait of an elderly woman reading in a library","seed":1,"file":"images\/run1_lora_r4\/p11_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":12,"category":"out_of_domain","prompt":"a city skyline at night with neon signs, wet street reflections","seed":0,"file":"images\/run1_lora_r4\/p12_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":12,"category":"out_of_domain","prompt":"a city skyline at night with neon signs, wet street reflections","seed":1,"file":"images\/run1_lora_r4\/p12_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":13,"category":"out_of_domain","prompt":"a bowl of ramen on a wooden table, product photo","seed":0,"file":"images\/run1_lora_r4\/p13_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":13,"category":"out_of_domain","prompt":"a bowl of ramen on a wooden table, product photo","seed":1,"file":"images\/run1_lora_r4\/p13_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":14,"category":"out_of_domain","prompt":"a red sports car driving on a mountain road","seed":0,"file":"images\/run1_lora_r4\/p14_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":14,"category":"out_of_domain","prompt":"a red sports car driving on a mountain road","seed":1,"file":"images\/run1_lora_r4\/p14_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":15,"category":"compositional","prompt":"two cartoon characters, one in red armor and one in blue armor, standing back to back","seed":0,"file":"images\/run1_lora_r4\/p15_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":15,"category":"compositional","prompt":"two cartoon characters, one in red armor and one in blue armor, standing back to back","seed":1,"file":"images\/run1_lora_r4\/p15_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":16,"category":"compositional","prompt":"a cartoon character holding a sword in the left hand and a scroll in the right hand","seed":0,"file":"images\/run1_lora_r4\/p16_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":16,"category":"compositional","prompt":"a cartoon character holding a sword in the left hand and a scroll in the right hand","seed":1,"file":"images\/run1_lora_r4\/p16_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":17,"category":"compositional","prompt":"three ninjas sitting around a campfire at night","seed":0,"file":"images\/run1_lora_r4\/p17_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":17,"category":"compositional","prompt":"three ninjas sitting around a campfire at night","seed":1,"file":"images\/run1_lora_r4\/p17_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":18,"category":"compositional","prompt":"a cartoon character with green hair and yellow eyes wearing a purple cloak","seed":0,"file":"images\/run1_lora_r4\/p18_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":18,"category":"compositional","prompt":"a cartoon character with green hair and yellow eyes wearing a purple cloak","seed":1,"file":"images\/run1_lora_r4\/p18_s1.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":19,"category":"compositional","prompt":"a tiny cartoon character standing in front of a giant dragon","seed":0,"file":"images\/run1_lora_r4\/p19_s0.png","nsfw_flag":false}
+{"model":"run1_lora_r4","prompt_id":19,"category":"compositional","prompt":"a tiny cartoon character standing in front of a giant dragon","seed":1,"file":"images\/run1_lora_r4\/p19_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":0,"category":"in_domain","prompt":"a man with a sword in his hand","seed":0,"file":"images\/run2_lora_r32\/p00_s0.png","nsfw_flag":true}
+{"model":"run2_lora_r32","prompt_id":0,"category":"in_domain","prompt":"a man with a sword in his hand","seed":1,"file":"images\/run2_lora_r32\/p00_s1.png","nsfw_flag":true}
+{"model":"run2_lora_r32","prompt_id":1,"category":"in_domain","prompt":"a woman in a green and white outfit","seed":0,"file":"images\/run2_lora_r32\/p01_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":1,"category":"in_domain","prompt":"a woman in a green and white outfit","seed":1,"file":"images\/run2_lora_r32\/p01_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":2,"category":"in_domain","prompt":"a person with white hair and blue eyes","seed":0,"file":"images\/run2_lora_r32\/p02_s0.png","nsfw_flag":true}
+{"model":"run2_lora_r32","prompt_id":2,"category":"in_domain","prompt":"a person with white hair and blue eyes","seed":1,"file":"images\/run2_lora_r32\/p02_s1.png","nsfw_flag":true}
+{"model":"run2_lora_r32","prompt_id":3,"category":"in_domain","prompt":"a woman with long black hair wearing a blue robe","seed":0,"file":"images\/run2_lora_r32\/p03_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":3,"category":"in_domain","prompt":"a woman with long black hair wearing a blue robe","seed":1,"file":"images\/run2_lora_r32\/p03_s1.png","nsfw_flag":true}
+{"model":"run2_lora_r32","prompt_id":4,"category":"in_domain","prompt":"a man with a hat and glasses on","seed":0,"file":"images\/run2_lora_r32\/p04_s0.png","nsfw_flag":true}
+{"model":"run2_lora_r32","prompt_id":4,"category":"in_domain","prompt":"a man with a hat and glasses on","seed":1,"file":"images\/run2_lora_r32\/p04_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":5,"category":"in_domain","prompt":"a man with black hair and a brown vest","seed":0,"file":"images\/run2_lora_r32\/p05_s0.png","nsfw_flag":true}
+{"model":"run2_lora_r32","prompt_id":5,"category":"in_domain","prompt":"a man with black hair and a brown vest","seed":1,"file":"images\/run2_lora_r32\/p05_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":6,"category":"in_domain","prompt":"a man and a horse in front of a large ball","seed":0,"file":"images\/run2_lora_r32\/p06_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":6,"category":"in_domain","prompt":"a man and a horse in front of a large ball","seed":1,"file":"images\/run2_lora_r32\/p06_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":7,"category":"in_domain","prompt":"a woman in a kimono kimono","seed":0,"file":"images\/run2_lora_r32\/p07_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":7,"category":"in_domain","prompt":"a woman in a kimono kimono","seed":1,"file":"images\/run2_lora_r32\/p07_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":8,"category":"in_domain","prompt":"the head of a man with a goat on it's back","seed":0,"file":"images\/run2_lora_r32\/p08_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":8,"category":"in_domain","prompt":"the head of a man with a goat on it's back","seed":1,"file":"images\/run2_lora_r32\/p08_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":9,"category":"in_domain","prompt":"a woman with glasses and a red shirt","seed":0,"file":"images\/run2_lora_r32\/p09_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":9,"category":"in_domain","prompt":"a woman with glasses and a red shirt","seed":1,"file":"images\/run2_lora_r32\/p09_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":10,"category":"out_of_domain","prompt":"a photograph of a golden retriever running on a sandy beach","seed":0,"file":"images\/run2_lora_r32\/p10_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":10,"category":"out_of_domain","prompt":"a photograph of a golden retriever running on a sandy beach","seed":1,"file":"images\/run2_lora_r32\/p10_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":11,"category":"out_of_domain","prompt":"a realistic portrait of an elderly woman reading in a library","seed":0,"file":"images\/run2_lora_r32\/p11_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":11,"category":"out_of_domain","prompt":"a realistic portrait of an elderly woman reading in a library","seed":1,"file":"images\/run2_lora_r32\/p11_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":12,"category":"out_of_domain","prompt":"a city skyline at night with neon signs, wet street reflections","seed":0,"file":"images\/run2_lora_r32\/p12_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":12,"category":"out_of_domain","prompt":"a city skyline at night with neon signs, wet street reflections","seed":1,"file":"images\/run2_lora_r32\/p12_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":13,"category":"out_of_domain","prompt":"a bowl of ramen on a wooden table, product photo","seed":0,"file":"images\/run2_lora_r32\/p13_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":13,"category":"out_of_domain","prompt":"a bowl of ramen on a wooden table, product photo","seed":1,"file":"images\/run2_lora_r32\/p13_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":14,"category":"out_of_domain","prompt":"a red sports car driving on a mountain road","seed":0,"file":"images\/run2_lora_r32\/p14_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":14,"category":"out_of_domain","prompt":"a red sports car driving on a mountain road","seed":1,"file":"images\/run2_lora_r32\/p14_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":15,"category":"compositional","prompt":"two cartoon characters, one in red armor and one in blue armor, standing back to back","seed":0,"file":"images\/run2_lora_r32\/p15_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":15,"category":"compositional","prompt":"two cartoon characters, one in red armor and one in blue armor, standing back to back","seed":1,"file":"images\/run2_lora_r32\/p15_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":16,"category":"compositional","prompt":"a cartoon character holding a sword in the left hand and a scroll in the right hand","seed":0,"file":"images\/run2_lora_r32\/p16_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":16,"category":"compositional","prompt":"a cartoon character holding a sword in the left hand and a scroll in the right hand","seed":1,"file":"images\/run2_lora_r32\/p16_s1.png","nsfw_flag":true}
+{"model":"run2_lora_r32","prompt_id":17,"category":"compositional","prompt":"three ninjas sitting around a campfire at night","seed":0,"file":"images\/run2_lora_r32\/p17_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":17,"category":"compositional","prompt":"three ninjas sitting around a campfire at night","seed":1,"file":"images\/run2_lora_r32\/p17_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":18,"category":"compositional","prompt":"a cartoon character with green hair and yellow eyes wearing a purple cloak","seed":0,"file":"images\/run2_lora_r32\/p18_s0.png","nsfw_flag":true}
+{"model":"run2_lora_r32","prompt_id":18,"category":"compositional","prompt":"a cartoon character with green hair and yellow eyes wearing a purple cloak","seed":1,"file":"images\/run2_lora_r32\/p18_s1.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":19,"category":"compositional","prompt":"a tiny cartoon character standing in front of a giant dragon","seed":0,"file":"images\/run2_lora_r32\/p19_s0.png","nsfw_flag":false}
+{"model":"run2_lora_r32","prompt_id":19,"category":"compositional","prompt":"a tiny cartoon character standing in front of a giant dragon","seed":1,"file":"images\/run2_lora_r32\/p19_s1.png","nsfw_flag":false}

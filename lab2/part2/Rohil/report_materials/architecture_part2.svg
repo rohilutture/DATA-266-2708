@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 470" font-family="Arial, Helvetica, sans-serif" font-size="13">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+  </defs>
+  <rect width="940" height="470" fill="#ffffff"/>
+  <text x="470" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#111">Part 2 pipeline: fine-tuning Stable Diffusion 1.5 on Naruto BLIP captions</text>
+
+  <!-- Row 1 -->
+  <g stroke="#333" stroke-width="1.5" fill="#eef3fb">
+    <rect x="20" y="50" width="200" height="90" rx="8"/>
+    <rect x="250" y="50" width="200" height="90" rx="8"/>
+    <rect x="480" y="50" width="200" height="90" rx="8"/>
+    <rect x="710" y="50" width="210" height="90" rx="8" fill="#fdf1e3"/>
+  </g>
+  <g fill="#111" text-anchor="middle">
+    <text x="120" y="75" font-weight="bold">1. Dataset</text>
+    <text x="120" y="95">lambdalabs/naruto-blip-captions</text>
+    <text x="120" y="113">1221 image + caption pairs</text>
+    <text x="120" y="131" font-size="11">license not stated on card</text>
+
+    <text x="350" y="75" font-weight="bold">2. Cleaning and split</text>
+    <text x="350" y="95">0 corrupt, 0 duplicate images</text>
+    <text x="350" y="113">1099 train / 122 test</text>
+    <text x="350" y="131" font-size="11">90/10 split, seed 266</text>
+
+    <text x="580" y="75" font-weight="bold">3. Preprocessing</text>
+    <text x="580" y="95">center-crop to 512x512</text>
+    <text x="580" y="113">cache VAE latents (+ h-flip)</text>
+    <text x="580" y="131">cache CLIP text embeddings</text>
+
+    <text x="815" y="75" font-weight="bold">4. Two fine-tuning runs</text>
+    <text x="815" y="95">frozen SD 1.5 UNet + LoRA</text>
+    <text x="815" y="113">run 1: r=4   |   run 2: r=32</text>
+    <text x="815" y="131" font-size="11">2000 steps, bs 4, lr 1e-4, fp16</text>
+  </g>
+  <g stroke="#333" stroke-width="1.8" marker-end="url(#a)">
+    <line x1="220" y1="95" x2="248" y2="95"/>
+    <line x1="450" y1="95" x2="478" y2="95"/>
+    <line x1="680" y1="95" x2="708" y2="95"/>
+  </g>
+
+  <!-- Row 2 -->
+  <g stroke="#333" stroke-width="1.5" fill="#eef3fb">
+    <rect x="710" y="200" width="210" height="90" rx="8" fill="#fdf1e3"/>
+    <rect x="480" y="200" width="200" height="90" rx="8"/>
+    <rect x="250" y="200" width="200" height="90" rx="8"/>
+    <rect x="20" y="200" width="200" height="90" rx="8"/>
+  </g>
+  <g fill="#111" text-anchor="middle">
+    <text x="815" y="225" font-weight="bold">5. Adapters (Hugging Face)</text>
+    <text x="815" y="245" font-size="12">naruto-sd15-run1_lora_r4</text>
+    <text x="815" y="263" font-size="12">naruto-sd15-run2_lora_r32</text>
+    <text x="815" y="281" font-size="11">0.70 GPU-h each, 2.9 GB peak</text>
+
+    <text x="580" y="225" font-weight="bold">6. Generation</text>
+    <text x="580" y="245">20 fixed prompts x seeds 0, 1</text>
+    <text x="580" y="263">base, run 1, run 2 = 120 images</text>
+    <text x="580" y="281" font-size="11">DPM-Solver++, 30 steps, CFG 7.5</text>
+
+    <text x="350" y="225" font-weight="bold">7. Evaluation</text>
+    <text x="350" y="245">KID, CLIP, LPIPS diversity</text>
+    <text x="350" y="263">25 blinded pairs, 3 raters</text>
+    <text x="350" y="281" font-size="11">GPU-hours, peak memory</text>
+
+    <text x="120" y="225" font-weight="bold">8. Safety analysis</text>
+    <text x="120" y="245">license, NSFW checker</text>
+    <text x="120" y="263">memorization (CLIP nearest</text>
+    <text x="120" y="281">neighbour in training set)</text>
+  </g>
+  <g stroke="#333" stroke-width="1.8" marker-end="url(#a)" fill="none">
+    <path d="M815,140 L815,198"/>
+    <line x1="710" y1="245" x2="682" y2="245"/>
+    <line x1="480" y1="245" x2="452" y2="245"/>
+    <line x1="250" y1="245" x2="222" y2="245"/>
+  </g>
+
+  <!-- Row 3 -->
+  <g stroke="#333" stroke-width="1.5" fill="#e9f6ec">
+    <rect x="450" y="345" width="260" height="80" rx="8"/>
+    <rect x="20" y="345" width="400" height="80" rx="8"/>
+  </g>
+  <g fill="#111" text-anchor="middle">
+    <text x="580" y="372" font-weight="bold">Hugging Face dataset</text>
+    <text x="580" y="392">naruto-sd15-generations</text>
+    <text x="580" y="410" font-size="11">120 images with prompt, seed, model</text>
+    <text x="220" y="372" font-weight="bold">Results table and report</text>
+    <text x="220" y="392">base vs run 1 vs run 2</text>
+    <text x="220" y="410" font-size="11">failure modes, final run choice (r=32), model card</text>
+  </g>
+  <g stroke="#333" stroke-width="1.8" marker-end="url(#a)" fill="none">
+    <line x1="580" y1="290" x2="580" y2="343"/>
+    <path d="M350,290 L350,318 L220,318 L220,343"/>
+  </g>
+  <text x="470" y="458" text-anchor="middle" font-size="11" fill="#555">Seed 266 everywhere; same data order, steps, sampler and prompts for all models.</text>
+</svg>

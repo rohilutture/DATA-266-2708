@@ -1,0 +1,102 @@
+[
+  {
+    "id": 0,
+    "category": "in_domain",
+    "prompt": "a man with a sword in his hand"
+  },
+  {
+    "id": 1,
+    "category": "in_domain",
+    "prompt": "a woman in a green and white outfit"
+  },
+  {
+    "id": 2,
+    "category": "in_domain",
+    "prompt": "a person with white hair and blue eyes"
+  },
+  {
+    "id": 3,
+    "category": "in_domain",
+    "prompt": "a woman with long black hair wearing a blue robe"
+  },
+  {
+    "id": 4,
+    "category": "in_domain",
+    "prompt": "a man with a hat and glasses on"
+  },
+  {
+    "id": 5,
+    "category": "in_domain",
+    "prompt": "a man with black hair and a brown vest"
+  },
+  {
+    "id": 6,
+    "category": "in_domain",
+    "prompt": "a man and a horse in front of a large ball"
+  },
+  {
+    "id": 7,
+    "category": "in_domain",
+    "prompt": "a woman in a kimono kimono"
+  },
+  {
+    "id": 8,
+    "category": "in_domain",
+    "prompt": "the head of a man with a goat on it's back"
+  },
+  {
+    "id": 9,
+    "category": "in_domain",
+    "prompt": "a woman with glasses and a red shirt"
+  },
+  {
+    "id": 10,
+    "category": "out_of_domain",
+    "prompt": "a photograph of a golden retriever running on a sandy beach"
+  },
+  {
+    "id": 11,
+    "category": "out_of_domain",
+    "prompt": "a realistic portrait of an elderly woman reading in a library"
+  },
+  {
+    "id": 12,
+    "category": "out_of_domain",
+    "prompt": "a city skyline at night with neon signs, wet street reflections"
+  },
+  {
+    "id": 13,
+    "category": "out_of_domain",
+    "prompt": "a bowl of ramen on a wooden table, product photo"
+  },
+  {
+    "id": 14,
+    "category": "out_of_domain",
+    "prompt": "a red sports car driving on a mountain road"
+  },
+  {
+    "id": 15,
+    "category": "compositional",
+    "prompt": "two cartoon characters, one in red armor and one in blue armor, standing back to back"
+  },
+  {
+    "id": 16,
+    "category": "compositional",
+    "prompt": "a cartoon character holding a sword in the left hand and a scroll in the right hand"
+  },
+  {
+    "id": 17,
+    "category": "compositional",
+    "prompt": "three ninjas sitting around a campfire at night"
+  },
+  {
+    "id": 18,
+    "category": "compositional",
+    "prompt": "a cartoon character with green hair and yellow eyes wearing a purple cloak"
+  },
+  {
+    "id": 19,
+    "category": "compositional",
+    "prompt": "a tiny cartoon character standing in front of a giant dragon"
+  }
+]

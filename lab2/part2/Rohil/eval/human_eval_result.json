@@ -1,0 +1,15 @@
+{
+  "raters": [
+    "evaluator1",
+    "evaluator2",
+    "evaluator3"
+  ],
+  "win_rate_final_vs_base": 0.293,
+  "per_rater_win_rate": {
+    "evaluator1": 0.28,
+    "evaluator2": 0.24,
+    "evaluator3": 0.36
+  },
+  "majority_vote_win_rate": 0.32,
+  "mean_pairwise_agreement": 0.84
+}
