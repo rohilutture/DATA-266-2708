@@ -1,0 +1,110 @@
+{
+  "request_id": "S08_nocrit",
+  "request": "Make it look like it is snowing.",
+  "route": "edit",
+  "final_status": "completed",
+  "message": "Done (critique loop disabled).",
+  "answer": "",
+  "revisions": 0,
+  "use_critique": false,
+  "total_seconds": 11.235,
+  "gen_record": {
+    "mode": "edit",
+    "model": "timbrooks/instruct-pix2pix",
+    "image_guidance_scale": 1.5,
+    "steps": 20,
+    "prompt": "snowflakes falling around the coffee cup and saucer",
+    "seed": 266,
+    "revision": 0,
+    "sd_safety_flagged": false,
+    "seconds": 3.66
+  },
+  "critique_history": [],
+  "trace": [
+    {
+      "agent": "planner",
+      "input": {
+        "request": "Make it look like it is snowing.",
+        "image_ok": true,
+        "image_error": null
+      },
+      "output": {
+        "safe": true,
+        "route": "edit",
+        "route_source": "rules",
+        "ocr_text_found": false
+      },
+      "error": null,
+      "seconds": 0.575
+    },
+    {
+      "agent": "vision",
+      "input": {
+        "route": "edit",
+        "image_size": [
+          600,
+          400
+        ]
+      },
+      "output": {
+        "caption": "A cup of coffee sits on a saucer with a spoon next to it.",
+        "objects": [
+          "coffee cup",
+          "espresso",
+          "spoon",
+          "saucer",
+          "wooden table"
+        ],
+        "visible_text": "",
+        "qa": [
+          {
+            "question": "How many people or animals are in the image?",
+            "answer": "There are no people or animals in the image."
+          },
+          {
+            "question": "What are the dominant colours and the setting?",
+            "answer": "The dominant colors are brown and white. The setting is a wooden table with a red saucer holding a cup of coffee and a spoon."
+          }
+        ]
+      },
+      "error": null,
+      "seconds": 4.843
+    },
+    {
+      "agent": "prompt_engineering",
+      "input": {
+        "request": "Make it look like it is snowing.",
+        "caption": "A cup of coffee sits on a saucer with a spoon next to it.",
+        "revision_instruction": null
+      },
+      "output": {
+        "prompt": "snowflakes falling around the coffee cup and saucer",
+        "target_description": "A cup of coffee sits on a saucer with a spoon next to it, surrounded by falling snowflakes.",
+        "revision_applied": null
+      },
+      "error": null,
+      "seconds": 2.146
+    },
+    {
+      "agent": "image_generation",
+      "input": {
+        "route": "edit",
+        "prompt": "snowflakes falling around the coffee cup and saucer",
+        "revision": 0
+      },
+      "output": {
+        "mode": "edit",
+        "model": "timbrooks/instruct-pix2pix",
+        "image_guidance_scale": 1.5,
+        "steps": 20,
+        "prompt": "snowflakes falling around the coffee cup and saucer",
+        "seed": 266,
+        "revision": 0,
+        "sd_safety_flagged": false,
+        "seconds": 3.66
+      },
+      "error": null,
+      "seconds": 3.66
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "request_id": "S01_nocrit",
+  "request": "Describe this image in one or two sentences.",
+  "route": "caption_qa",
+  "final_status": "answered",
+  "message": "A cup of coffee sits on a saucer with a spoon next to it.",
+  "answer": "A cup of coffee sits on a saucer with a spoon next to it.",
+  "revisions": 0,
+  "use_critique": false,
+  "total_seconds": 6.579,
+  "gen_record": {},
+  "critique_history": [],
+  "trace": [
+    {
+      "agent": "planner",
+      "input": {
+        "request": "Describe this image in one or two sentences.",
+        "image_ok": true,
+        "image_error": null
+      },
+      "output": {
+        "safe": true,
+        "route": "caption_qa",
+        "route_source": "rules",
+        "ocr_text_found": false
+      },
+      "error": null,
+      "seconds": 0.579
+    },
+    {
+      "agent": "vision",
+      "input": {
+        "route": "caption_qa",
+        "image_size": [
+          600,
+          400
+        ]
+      },
+      "output": {
+        "caption": "A cup of coffee sits on a saucer with a spoon next to it.",
+        "objects": [
+          "coffee cup",
+          "espresso",
+          "spoon",
+          "saucer",
+          "wooden table"
+        ],
+        "visible_text": "",
+        "qa": [
+          {
+            "question": "How many people or animals are in the image?",
+            "answer": "There are no people or animals in the image."
+          },
+          {
+            "question": "What are the dominant colours and the setting?",
+            "answer": "The dominant colors are brown and white. The setting is a wooden table with a red saucer holding a cup of coffee and a spoon."
+          },
+          {
+            "question": "Describe this image in one or two sentences.",
+            "answer": "A cup of coffee sits on a saucer with a spoon beside it."
+          }
+        ]
+      },
+      "error": null,
+      "seconds": 5.989
+    }
+  ]
+}

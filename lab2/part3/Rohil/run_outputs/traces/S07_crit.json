@@ -1,0 +1,142 @@
+{
+  "request_id": "S07_crit",
+  "request": "Add sunglasses to the cat.",
+  "route": "edit",
+  "final_status": "completed",
+  "message": "Done. The critic accepted this result.",
+  "answer": "",
+  "revisions": 0,
+  "use_critique": true,
+  "total_seconds": 45.041,
+  "gen_record": {
+    "mode": "edit",
+    "model": "timbrooks/instruct-pix2pix",
+    "image_guidance_scale": 1.5,
+    "steps": 20,
+    "prompt": "Add sunglasses to the cat.",
+    "seed": 266,
+    "revision": 0,
+    "sd_safety_flagged": false,
+    "seconds": 37.69
+  },
+  "critique_history": [
+    {
+      "decision": "accept",
+      "safe": true,
+      "clip": 0.3411,
+      "judge_score": 4,
+      "judge_problem": "The cat's eyes are not green; they appear to be black.",
+      "mean_abs_change": 28.88,
+      "reasons": [],
+      "revision_instruction": ""
+    }
+  ],
+  "trace": [
+    {
+      "agent": "planner",
+      "input": {
+        "request": "Add sunglasses to the cat.",
+        "image_ok": true,
+        "image_error": null
+      },
+      "output": {
+        "safe": true,
+        "route": "edit",
+        "route_source": "rules",
+        "ocr_text_found": false
+      },
+      "error": null,
+      "seconds": 0.322
+    },
+    {
+      "agent": "vision",
+      "input": {
+        "route": "edit",
+        "image_size": [
+          451,
+          300
+        ]
+      },
+      "output": {
+        "caption": "A cat with green eyes and orange nose is staring at the camera.",
+        "objects": [
+          "cat",
+          "eyes",
+          "whiskers",
+          "nose",
+          "fur",
+          "ears",
+          "background"
+        ],
+        "visible_text": "",
+        "qa": [
+          {
+            "question": "How many people or animals are in the image?",
+            "answer": "1"
+          },
+          {
+            "question": "What are the dominant colours and the setting?",
+            "answer": "The dominant colors are orange and white, with a blurred indoor background."
+          }
+        ]
+      },
+      "error": null,
+      "seconds": 2.849
+    },
+    {
+      "agent": "prompt_engineering",
+      "input": {
+        "request": "Add sunglasses to the cat.",
+        "caption": "A cat with green eyes and orange nose is staring at the camera.",
+        "revision_instruction": null
+      },
+      "output": {
+        "prompt": "Add sunglasses to the cat.",
+        "target_description": "A cat with green eyes, orange nose, and sunglasses on its face is staring at the camera.",
+        "revision_applied": null
+      },
+      "error": null,
+      "seconds": 1.823
+    },
+    {
+      "agent": "image_generation",
+      "input": {
+        "route": "edit",
+        "prompt": "Add sunglasses to the cat.",
+        "revision": 0
+      },
+      "output": {
+        "mode": "edit",
+        "model": "timbrooks/instruct-pix2pix",
+        "image_guidance_scale": 1.5,
+        "steps": 20,
+        "prompt": "Add sunglasses to the cat.",
+        "seed": 266,
+        "revision": 0,
+        "sd_safety_flagged": false,
+        "seconds": 37.69
+      },
+      "error": null,
+      "seconds": 37.685
+    },
+    {
+      "agent": "critique",
+      "input": {
+        "target_description": "A cat with green eyes, orange nose, and sunglasses on its face is staring at the camera.",
+        "revision": 0
+      },
+      "output": {
+        "decision": "accept",
+        "safe": true,
+        "clip": 0.3411,
+        "judge_score": 4,
+        "judge_problem": "The cat's eyes are not green; they appear to be black.",
+        "mean_abs_change": 28.88,
+        "reasons": [],
+        "revision_instruction": ""
+      },
+      "error": null,
+      "seconds": 2.355
+    }
+  ]
+}

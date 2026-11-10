@@ -1,0 +1,30 @@
+{
+  "request_id": "R06_rt",
+  "request": "Describe this image.",
+  "route": "",
+  "final_status": "error",
+  "message": "The uploaded file is empty (0 bytes).",
+  "answer": "",
+  "revisions": 0,
+  "use_critique": true,
+  "total_seconds": 0.0,
+  "gen_record": {},
+  "critique_history": [],
+  "trace": [
+    {
+      "agent": "planner",
+      "input": {
+        "request": "Describe this image.",
+        "image_ok": false,
+        "image_error": "The uploaded file is empty (0 bytes)."
+      },
+      "output": {
+        "safe": true,
+        "route": "",
+        "error": "The uploaded file is empty (0 bytes)."
+      },
+      "error": null,
+      "seconds": 0.0
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "request_id": "S13_nocrit",
+  "request": "make it better",
+  "route": "ambiguous",
+  "final_status": "needs_clarification",
+  "message": "Your request is a bit ambiguous. What would you like me to do with the image: describe it, change its style (e.g. watercolor, pixel art, Naruto anime), or edit something specific (e.g. add sunglasses, change the background)?",
+  "answer": "",
+  "revisions": 0,
+  "use_critique": false,
+  "total_seconds": 0.332,
+  "gen_record": {},
+  "critique_history": [],
+  "trace": [
+    {
+      "agent": "planner",
+      "input": {
+        "request": "make it better",
+        "image_ok": true,
+        "image_error": null
+      },
+      "output": {
+        "safe": true,
+        "route": "ambiguous",
+        "route_source": "rules",
+        "ocr_text_found": false
+      },
+      "error": null,
+      "seconds": 0.326
+    }
+  ]
+}

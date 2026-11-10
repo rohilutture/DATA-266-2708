@@ -1,31 +1,31 @@
 scenario,category,critique_loop,route,final_status,passed,failed_checks,revisions,clip_gain,seconds,message
-S01,caption_vqa,True,caption_qa,answered,True,,0,,4.936,A cup of coffee sits on a saucer with a spoon next to it.
-S02,caption_vqa,True,caption_qa,answered,True,,0,,5.427,There is one person in the picture.
-S03,caption_vqa,True,caption_qa,answered,True,,0,,3.529,"The animal shown is a cat, and it has a light brown color with darker stripes."
-S04,style_change,True,style_change,completed,True,,2,0.0647,21.964,Done after 2 revisions; the critic still had concerns: VLM judge score 3 is below 4.
-S05,style_change,True,style_change,completed,True,,2,0.0511,21.865,Done after 2 revisions; the critic still had concerns: VLM judge score 3 is below 4.
-S06,style_change,True,style_change,completed,True,,2,0.0291,21.342,Done after 2 revisions; the critic still had concerns: VLM judge score 3 is below 4.
-S07,edit,True,edit,completed,True,,0,0.0878,62.833,Done. The critic accepted this result.
-S08,edit,True,edit,completed,True,,2,0.0286,19.278,Done after 2 revisions; the critic still had concerns: VLM judge score 2 is below 4.
-S09,edit,True,edit,completed,True,,2,0.0352,15.583,Done after 2 revisions; the critic still had concerns: VLM judge score 3 is below 4.
-S10,domain_style,True,domain_style,completed,True,,2,0.0913,37.76,Done after 2 revisions; the critic still had concerns: VLM judge score 3 is below 4.
-S11,domain_style,True,domain_style,completed,True,,2,0.0343,23.623,Done after 2 revisions; the critic still had concerns: VLM judge score 2 is below 4.
-S12,domain_style,True,domain_style,completed,False,clip_gain_ok,2,-0.0244,24.216,Done after 2 revisions; the critic still had concerns: VLM judge score 3 is below 4.
-S13,ambiguous_broken,True,ambiguous,needs_clarification,True,,0,,0.275,"Your request is a bit ambiguous. What would you like me to do with the image: describe it, change its style (e.g. watercolor, pixel art, Nar"
+S01,caption_vqa,True,caption_qa,answered,True,,0,,6.357,A cup of coffee sits on a saucer with a spoon next to it.
+S02,caption_vqa,True,caption_qa,answered,True,,0,,6.78,There is one person in the picture.
+S03,caption_vqa,True,caption_qa,answered,True,,0,,4.149,"The animal shown is a cat, and it has a light brown color with darker stripes."
+S04,style_change,True,style_change,completed,True,,2,0.0129,29.989,Done after 2 revisions; the critic still had concerns: VLM judge score 0 is below 4.
+S05,style_change,True,style_change,completed,True,,2,0.051,29.347,Done after 2 revisions; the critic still had concerns: VLM judge score 3 is below 4.
+S06,style_change,True,style_change,completed,True,,2,0.0291,34.66,Done. The critic accepted this result.
+S07,edit,True,edit,completed,True,,0,0.0884,45.041,Done. The critic accepted this result.
+S08,edit,True,edit,completed,True,,2,0.0293,32.224,Done after 2 revisions; the critic still had concerns: VLM judge score 2 is below 4.
+S09,edit,True,edit,completed,True,,2,0.0358,26.475,Done after 2 revisions; the critic still had concerns: VLM judge score 3 is below 4.
+S10,domain_style,True,domain_style,completed,True,,2,0.0598,36.479,Done after 2 revisions; the critic still had concerns: VLM judge score 3 is below 4.
+S11,domain_style,True,domain_style,completed,True,,2,0.0284,32.643,Done after 2 revisions; the critic still had concerns: VLM judge score 2 is below 4.
+S12,domain_style,True,domain_style,completed,False,clip_gain_ok,2,-0.0093,36.351,Done after 2 revisions; the critic still had concerns: VLM judge score 3 is below 4.
+S13,ambiguous_broken,True,ambiguous,needs_clarification,True,,0,,0.33,"Your request is a bit ambiguous. What would you like me to do with the image: describe it, change its style (e.g. watercolor, pixel art, Nar"
 S14,ambiguous_broken,True,,error,True,,0,,0.003,The file could not be read as an image (it may be corrupted or not an image).
-S15,ambiguous_broken,True,,error,True,,0,,0.002,The image is too small (8x8). Please upload one at least 32x32 pixels.
-S01,caption_vqa,False,caption_qa,answered,True,,0,,5.015,A cup of coffee sits on a saucer with a spoon next to it.
-S02,caption_vqa,False,caption_qa,answered,True,,0,,5.371,There is one person in the picture.
-S03,caption_vqa,False,caption_qa,answered,True,,0,,3.517,"The animal shown is a cat, and it has a light brown color with darker stripes."
-S04,style_change,False,style_change,completed,False,clip_gain_ok,0,-0.0056,7.879,Done (critique loop disabled).
-S05,style_change,False,style_change,completed,True,,0,0.0294,5.852,Done (critique loop disabled).
-S06,style_change,False,style_change,completed,False,clip_gain_ok,0,-0.0015,7.262,Done (critique loop disabled).
-S07,edit,False,edit,completed,True,,0,0.0878,7.651,Done (critique loop disabled).
-S08,edit,False,edit,completed,True,,0,0.0349,4.699,Done (critique loop disabled).
-S09,edit,False,edit,completed,False,clip_gain_ok,0,-0.0001,3.661,Done (critique loop disabled).
-S10,domain_style,False,domain_style,completed,True,,0,0.0664,8.979,Done (critique loop disabled).
-S11,domain_style,False,domain_style,completed,True,,0,0.0316,5.909,Done (critique loop disabled).
-S12,domain_style,False,domain_style,completed,True,,0,0.0156,5.118,Done (critique loop disabled).
-S13,ambiguous_broken,False,ambiguous,needs_clarification,True,,0,,0.13,"Your request is a bit ambiguous. What would you like me to do with the image: describe it, change its style (e.g. watercolor, pixel art, Nar"
+S15,ambiguous_broken,True,,error,True,,0,,0.001,The image is too small (8x8). Please upload one at least 32x32 pixels.
+S01,caption_vqa,False,caption_qa,answered,True,,0,,6.579,A cup of coffee sits on a saucer with a spoon next to it.
+S02,caption_vqa,False,caption_qa,answered,True,,0,,7.03,There is one person in the picture.
+S03,caption_vqa,False,caption_qa,answered,True,,0,,4.234,"The animal shown is a cat, and it has a light brown color with darker stripes."
+S04,style_change,False,style_change,completed,False,clip_gain_ok,0,-0.0061,11.305,Done (critique loop disabled).
+S05,style_change,False,style_change,completed,True,,0,0.0288,8.566,Done (critique loop disabled).
+S06,style_change,False,style_change,completed,False,clip_gain_ok,0,-0.0005,11.489,Done (critique loop disabled).
+S07,edit,False,edit,completed,True,,0,0.0884,11.875,Done (critique loop disabled).
+S08,edit,False,edit,completed,True,,0,0.0337,11.235,Done (critique loop disabled).
+S09,edit,False,edit,completed,True,,0,0.0002,8.784,Done (critique loop disabled).
+S10,domain_style,False,domain_style,completed,True,,0,0.0686,13.505,Done (critique loop disabled).
+S11,domain_style,False,domain_style,completed,True,,0,0.0341,11.742,Done (critique loop disabled).
+S12,domain_style,False,domain_style,completed,True,,0,0.0161,11.862,Done (critique loop disabled).
+S13,ambiguous_broken,False,ambiguous,needs_clarification,True,,0,,0.332,"Your request is a bit ambiguous. What would you like me to do with the image: describe it, change its style (e.g. watercolor, pixel art, Nar"
 S14,ambiguous_broken,False,,error,True,,0,,0.001,The file could not be read as an image (it may be corrupted or not an image).
 S15,ambiguous_broken,False,,error,True,,0,,0.0,The image is too small (8x8). Please upload one at least 32x32 pixels.

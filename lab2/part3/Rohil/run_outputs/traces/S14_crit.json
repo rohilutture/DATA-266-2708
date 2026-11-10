@@ -1,0 +1,30 @@
+{
+  "request_id": "S14_crit",
+  "request": "Describe this image.",
+  "route": "",
+  "final_status": "error",
+  "message": "The file could not be read as an image (it may be corrupted or not an image).",
+  "answer": "",
+  "revisions": 0,
+  "use_critique": true,
+  "total_seconds": 0.003,
+  "gen_record": {},
+  "critique_history": [],
+  "trace": [
+    {
+      "agent": "planner",
+      "input": {
+        "request": "Describe this image.",
+        "image_ok": false,
+        "image_error": "The file could not be read as an image (it may be corrupted or not an image)."
+      },
+      "output": {
+        "safe": true,
+        "route": "",
+        "error": "The file could not be read as an image (it may be corrupted or not an image)."
+      },
+      "error": null,
+      "seconds": 0.0
+    }
+  ]
+}

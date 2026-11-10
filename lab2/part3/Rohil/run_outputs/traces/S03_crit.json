@@ -1,0 +1,70 @@
+{
+  "request_id": "S03_crit",
+  "request": "What animal is shown here and what colour is it?",
+  "route": "caption_qa",
+  "final_status": "answered",
+  "message": "The animal shown is a cat, and it has a light brown color with darker stripes.",
+  "answer": "The animal shown is a cat, and it has a light brown color with darker stripes.",
+  "revisions": 0,
+  "use_critique": true,
+  "total_seconds": 4.149,
+  "gen_record": {},
+  "critique_history": [],
+  "trace": [
+    {
+      "agent": "planner",
+      "input": {
+        "request": "What animal is shown here and what colour is it?",
+        "image_ok": true,
+        "image_error": null
+      },
+      "output": {
+        "safe": true,
+        "route": "caption_qa",
+        "route_source": "rules",
+        "ocr_text_found": false
+      },
+      "error": null,
+      "seconds": 0.309
+    },
+    {
+      "agent": "vision",
+      "input": {
+        "route": "caption_qa",
+        "image_size": [
+          451,
+          300
+        ]
+      },
+      "output": {
+        "caption": "A cat with green eyes and orange nose is staring at the camera.",
+        "objects": [
+          "cat",
+          "eyes",
+          "whiskers",
+          "nose",
+          "fur",
+          "ears",
+          "background"
+        ],
+        "visible_text": "",
+        "qa": [
+          {
+            "question": "How many people or animals are in the image?",
+            "answer": "1"
+          },
+          {
+            "question": "What are the dominant colours and the setting?",
+            "answer": "The dominant colors are orange and white, with a blurred indoor background."
+          },
+          {
+            "question": "What animal is shown here and what colour is it?",
+            "answer": "The animal shown is a cat, and it has a light brown color with darker stripes."
+          }
+        ]
+      },
+      "error": null,
+      "seconds": 3.834
+    }
+  ]
+}
