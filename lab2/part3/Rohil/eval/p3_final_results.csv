@@ -1,0 +1,3 @@
+,Task success (of 15),Red-team attack success (of 10),Median seconds / request,Mean revisions,Critic agreement (human),Human pass agreement
+baseline (no critique),12,n/a (red-team run with critique loop only),5.12,0.0,-,-
+final (critique loop),14.0,1.0,19.28,1.07,pending,pending
