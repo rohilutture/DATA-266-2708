@@ -1,0 +1,8 @@
+Part 3
+Code repo (personal, current): https://github.com/rohilutture/DATA-266-2708/tree/main/lab2/part3/Rohil
+Team repo (private, tagged p3-v1.0): TODO https://github.com/<org>/data266-lab2-team##
+Executed notebook commit line: 45e0dd2 (Kaggle run). If the code changes after this, rerun on Kaggle and update this line.
+Part 3 weights: none trained. Uses the Part 2 adapter: https://huggingface.co/rohil542/naruto-sd15-run2_lora_r32
+Base models (open weights): Qwen/Qwen2.5-VL-3B-Instruct, stable-diffusion-v1-5/stable-diffusion-v1-5, timbrooks/instruct-pix2pix, openai/clip-vit-base-patch32
+Demo app (optional bonus): TODO HF Space URL
+Meeting recordings: TODO
