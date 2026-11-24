@@ -1,0 +1,12 @@
+{"model": "base", "p50_ms": 13.198, "p95_ms": 14.244, "peak_mem_gb": 0.2623}
+{"model": "gptq", "p50_ms": 47.734, "p95_ms": 75.151, "peak_mem_gb": 0.175}
+{"model": "teacher", "p50_ms": 9.596, "p95_ms": 11.189, "peak_mem_gb": 0.4219}
+{"model": "student", "p50_ms": 4.925, "p95_ms": 6.733, "peak_mem_gb": 0.2634}
+{"model": "base", "p50_ms": 13.814, "p95_ms": 16.381, "peak_mem_gb": 0.2623}
+{"model": "gptq", "p50_ms": 39.342, "p95_ms": 42.51, "peak_mem_gb": 0.175}
+{"model": "teacher", "p50_ms": 10.368, "p95_ms": 11.132, "peak_mem_gb": 0.4219}
+{"model": "student", "p50_ms": 4.57, "p95_ms": 5.335, "peak_mem_gb": 0.2634}
+{"model": "base", "p50_ms": 11.978, "p95_ms": 12.211, "peak_mem_gb": 0.2623}
+{"model": "gptq", "p50_ms": 39.911, "p95_ms": 42.224, "peak_mem_gb": 0.175}
+{"model": "teacher", "p50_ms": 9.163, "p95_ms": 9.954, "peak_mem_gb": 0.4219}
+{"model": "student", "p50_ms": 4.527, "p95_ms": 5.507, "peak_mem_gb": 0.2634}
